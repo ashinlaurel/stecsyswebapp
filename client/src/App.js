@@ -6,8 +6,10 @@ import Home from "./Components/Home";
 import { BrowserRouter, Route } from "react-router-dom";
 import Order from "./Components/Order";
 
-axios.defaults.baseURL =
-  "https://us-central1-stecsys-app.cloudfunctions.net/api";
+// Uncomment During Production-----------------------------------------------------------------------------------
+// axios.defaults.baseURL =
+//   "https://us-central1-stecsys-app.cloudfunctions.net/api";
+// --------Also dont forget to change proxy in client's package.json---------------------------------------------
 function App() {
   return (
     <div className="">
