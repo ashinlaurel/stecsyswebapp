@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon devserver.js",
+    "server": "nodemon ./firebasebackend/functions/devserver.js",
     "frontendstart": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run frontendstart\"",
     "build": "npm run build --prefix client",
