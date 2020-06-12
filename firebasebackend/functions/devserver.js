@@ -1,7 +1,14 @@
 const express = require("express");
+<<<<<<< HEAD
 const admin= require('firebase-admin');
 
 var bodyParser = require('body-parser');
+=======
+const admin = require("firebase-admin");
+const firebase = require("firebase");
+var config = require("./firebaseconfig");
+var bodyParser = require("body-parser");
+>>>>>>> 9689a5df3b692166047cb315d3b4353c0c0b15ee
 
 const app = express();
 const router = express.Router();
