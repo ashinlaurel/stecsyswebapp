@@ -5,6 +5,7 @@ import Home from "./Components/Home";
 import { BrowserRouter, Route } from "react-router-dom";
 import Order from "./Components/Order";
 import Admin from "./Components/AdminPage/Admin";
+import Login from "./Components/Login";
 
 // Uncomment During Production-----------------------------------------------------------------------------------
 // axios.defaults.baseURL =
@@ -27,6 +28,10 @@ function App() {
         <Route exact path="/admin">
           {" "}
           <Admin />{" "}
+        </Route>
+        <Route exact path="/login">
+          {" "}
+          <Login/> {" "}
         </Route>
       </BrowserRouter>
     </div>

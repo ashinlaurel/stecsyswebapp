@@ -3,13 +3,14 @@ const db = firebase.firestore();
 
 const loginController = {
   signup(req, res) {
-    console.log(req.body);
+    // console.log(req.body);  
+    // TODO ----- setup validation
     const newUser = {
       email: req.body.email,
       password: req.body.password,
       handle: req.body.handle,
     };
-    let token,userId;
+    let getToken,userId;
     db.doc(`/Users/${newUser.handle}`)
       .get()
       .then(doc=>{
@@ -24,7 +25,7 @@ const loginController = {
             userId = data.user.uid;
             return data.user.getIdToken();
       }).then(token=>{
-        token=token;
+        getToken=token;
         const userCred={
           handle:newUser.handle,
           email: newUser.email,
@@ -33,7 +34,8 @@ const loginController = {
         }
         return db.doc(`/Users/${newUser.handle}`).set(userCred);
       }).then(()=>{
-        return res.status(201).json({token});
+        console.log(getToken);
+        return res.status(201).json({token:getToken});
       })
       .catch(err=>{
           console.log(err);
@@ -53,6 +55,21 @@ const loginController = {
     //     return res.status(500).json({ message: `Error ${err.code}` });
     //   });
   },
+  login(req,res){
+    const user ={
+      email:req.body.email,
+      password:req.body.password
+    }
+    firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+      .then(data=>{
+        return data.user.getIdToken();
+      }).then(token=>{
+        return res.json({token})
+      }).catch(err=>{
+        console.error(err);
+        return res.status(500).json({error:err.code})
+      })
+  }
 };
 
 module.exports = loginController;

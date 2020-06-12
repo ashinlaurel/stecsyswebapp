@@ -26,6 +26,10 @@ app.post("/signup", (req, res) => {
   loginController.signup(req, res);
 });
 
+app.post("/login", (req, res) => {
+  loginController.login(req,res);
+}); 
+
 app.post("/neworder", (req, res) => {
   orderFormController.theorder(req, res);
 });
