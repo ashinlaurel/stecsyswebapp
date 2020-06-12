@@ -15,6 +15,7 @@ app.use(cors());
 
 const loginController = require("./Controllers/LoginController");
 const orderFormController = require("./Controllers/OrderFormController");
+const adminTableController = require("./Controllers/AdminTableController");
 
 app.get("/test", (req, res) => {
   console.log(config);
@@ -27,6 +28,11 @@ app.post("/signup", (req, res) => {
 
 app.post("/neworder", (req, res) => {
   orderFormController.theorder(req, res);
+});
+
+app.get("/output", (req, res) => {
+  adminTableController.getdata(req, res);
+  // console.log(req.body);
 });
 
 const PORT = 3001;

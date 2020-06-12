@@ -1,5 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+const SORT_OPTIONS = {
+  NAME_ASC: { column: "name", direction: "asc" },
+  NAME_DESC: { column: "name", direction: "desc" },
+};
+
+const Getdata = (sortBy = "NAME_ASC") => {
+  const [order, setOrder] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/output", sortBy)
+      .then((res) => {
+        const neworder = res.data;
+        setOrder(neworder);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [sortBy]);
+
+  // console.log(order);
+  return order;
+};
+
 const TableData = () => {
+  const [sortBy, setSortBy] = useState("NAME_ASC");
+  const order = Getdata(sortBy);
   return (
     <body class="antialiased font-sans bg-gray-200">
       <div class="container mx-auto px-4 sm:px-8">
@@ -27,9 +54,10 @@ const TableData = () => {
               </div>
               <div class="relative">
                 <select class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
-                  <option>All</option>
-                  <option>Active</option>
-                  <option>Inactive</option>
+                  <option>Date(Latest)</option>
+                  <option>Date(Oldest)</option>
+                  <option>Name(A-Z)</option>
+                  <option>Name(Z-A)</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
@@ -63,16 +91,19 @@ const TableData = () => {
                 <thead>
                   <tr>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      User
+                      Name
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Rol
+                      Phone
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Created at
+                      Email
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Status
+                      Company
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Order
                     </th>
                   </tr>
                 </thead>
@@ -111,6 +142,9 @@ const TableData = () => {
                         <span class="relative">Active</span>
                       </span>
                     </td>
+                    <td class="px-5 py-5 bg-white text-sm">
+                      <p class="text-gray-900 whitespace-no-wrap">Cookies</p>
+                    </td>
                   </tr>
                   <tr>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -145,6 +179,9 @@ const TableData = () => {
                         ></span>
                         <span class="relative">Active</span>
                       </span>
+                    </td>
+                    <td class="px-5 py-5 bg-white text-sm">
+                      <p class="text-gray-900 whitespace-no-wrap">Cookies</p>
                     </td>
                   </tr>
                   <tr>
@@ -181,6 +218,9 @@ const TableData = () => {
                         <span class="relative">Suspended</span>
                       </span>
                     </td>
+                    <td class="px-5 py-5 bg-white text-sm">
+                      <p class="text-gray-900 whitespace-no-wrap">Cookies</p>
+                    </td>
                   </tr>
                   <tr>
                     <td class="px-5 py-5 bg-white text-sm">
@@ -216,8 +256,32 @@ const TableData = () => {
                         <span class="relative">Inactive</span>
                       </span>
                     </td>
+                    <td class="px-5 py-5 bg-white text-sm">
+                      <p class="text-gray-900 whitespace-no-wrap">Cookies</p>
+                    </td>
                   </tr>
                 </tbody>
+                {/* <tbody>
+                  {order.map((doc) => (
+                    <tr>
+                      <td class="border px-4 py-2 border border-gray-500">
+                        {doc.name}
+                      </td>
+                      <td class="border px-4 py-2 border border-gray-500">
+                        {doc.phone}
+                      </td>
+                      <td class="border px-4 py-2 border border-gray-500">
+                        {doc.email}
+                      </td>
+                      <td class="border px-4 py-2 border border-gray-500">
+                        {doc.companyname}
+                      </td>
+                      <td class="border px-4 py-2 border border-gray-500">
+                        {doc.orders}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody> */}
               </table>
               <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
                 <span class="text-xs xs:text-sm text-gray-900">
