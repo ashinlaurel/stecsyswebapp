@@ -31,7 +31,7 @@ export default function Order() {
       .catch((err) => {
         console.log(err);
       });
-    setValues(theform);
+    // setValues(theform);
   };
 
   return (
