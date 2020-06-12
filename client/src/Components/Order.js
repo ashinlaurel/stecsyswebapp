@@ -9,11 +9,7 @@ export default function Order() {
     companyname: "",
     orders: "",
   };
-  //   const [name, setName] = useState("");
-  //   const [email, setEmail] = useState("");
-  //   const [company, setCompany] = useState("");
-  //   const [number, setNumber] = useState("");
-  //   const [item, setItem] = useState("");
+
   const [values, setValues] = useState(theform);
 
   const handleInput = (e) => {
@@ -29,23 +25,13 @@ export default function Order() {
     console.log("Submitted");
     axios
       .post("/neworder", values)
-      .then(() => setValues(theform))
+      .then((response) => {
+        console.log("Promise Working");
+      })
       .catch((err) => {
         console.log(err);
       });
-    // props.addOrEdit(values);
-    // const db = firebase.firestore();
-    // db.settings({
-    //   timestampsInSnapshots: true,
-    // });
-    // db.collection("orderdata").add({
-    //   name: values.name,
-    //   phone: values.phone,
-    //   email: values.email,
-    //   companyname: values.companyname,
-    //   orders: values.orders,
-    // });
-    // setValues(defform);
+    setValues(theform);
   };
 
   return (
@@ -54,18 +40,18 @@ export default function Order() {
         <div className="mx-2 md:mx-24 text-center py-20">
           <span className="text-4xl  text-gray-800 block pb-8">ORDER NOW</span>
           <form onSubmit={handleSubmit}>
-            <div class="md:flex md:items-center mb-6">
-              <div class="md:w-1/3">
+            <div className="md:flex md:items-center mb-6">
+              <div className="md:w-1/3">
                 <label
-                  class="block text-gray-800  md:text-right mb-1 md:mb-0 pr-4"
+                  className="block text-gray-800  md:text-right mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
                   Name
                 </label>
               </div>
-              <div class="md:w-2/3">
+              <div className="md:w-2/3">
                 <input
-                  class="bg-gray-200 appearance-none border-2 border-gray-200 
+                  className="bg-gray-200 appearance-none border-2 border-gray-200 
                     rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none 
                     focus:bg-white focus:border-purple-500"
                   id="inline-full-Item"
@@ -77,18 +63,18 @@ export default function Order() {
               </div>
             </div>
 
-            <div class="md:flex md:items-center mb-6">
-              <div class="md:w-1/3">
+            <div className="md:flex md:items-center mb-6">
+              <div className="md:w-1/3">
                 <label
-                  class="block text-gray-800  md:text-right mb-1 md:mb-0 pr-4"
+                  className="block text-gray-800  md:text-right mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
                   Email
                 </label>
               </div>
-              <div class="md:w-2/3">
+              <div className="md:w-2/3">
                 <input
-                  class="bg-gray-200 appearance-none border-2 border-gray-200 
+                  className="bg-gray-200 appearance-none border-2 border-gray-200 
                     rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none 
                     focus:bg-white focus:border-purple-500"
                   id="inline-full-name"
@@ -100,18 +86,18 @@ export default function Order() {
               </div>
             </div>
 
-            <div class="md:flex md:items-center mb-6">
-              <div class="md:w-1/3">
+            <div className="md:flex md:items-center mb-6">
+              <div className="md:w-1/3">
                 <label
-                  class="block text-gray-800  md:text-right mb-1 md:mb-0 pr-4"
+                  className="block text-gray-800  md:text-right mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
                   Company
                 </label>
               </div>
-              <div class="md:w-2/3">
+              <div className="md:w-2/3">
                 <input
-                  class="bg-gray-200 appearance-none border-2 border-gray-200 
+                  className="bg-gray-200 appearance-none border-2 border-gray-200 
                     rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none 
                     focus:bg-white focus:border-purple-500"
                   id="inline-full-name"
@@ -123,18 +109,18 @@ export default function Order() {
               </div>
             </div>
 
-            <div class="md:flex md:items-center mb-6">
-              <div class="md:w-1/3">
+            <div className="md:flex md:items-center mb-6">
+              <div className="md:w-1/3">
                 <label
-                  class="block text-gray-800  md:text-right mb-1 md:mb-0 pr-4"
+                  className="block text-gray-800  md:text-right mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
                   Mobile Number
                 </label>
               </div>
-              <div class="md:w-2/3">
+              <div className="md:w-2/3">
                 <input
-                  class="bg-gray-200 appearance-none border-2 border-gray-200 
+                  className="bg-gray-200 appearance-none border-2 border-gray-200 
                     rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none 
                     focus:bg-white focus:border-purple-500"
                   id="inline-full-name"
@@ -146,18 +132,18 @@ export default function Order() {
               </div>
             </div>
 
-            <div class="md:flex md:items-center mb-6">
-              <div class="md:w-1/3">
+            <div className="md:flex md:items-center mb-6">
+              <div className="md:w-1/3">
                 <label
-                  class="block text-gray-800  md:text-right mb-1 md:mb-0 pr-4"
+                  className="block text-gray-800  md:text-right mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
                   Order
                 </label>
               </div>
-              <div class="md:w-2/3">
+              <div className="md:w-2/3">
                 <textarea
-                  class="bg-gray-200 appearance-none border-2 border-gray-200 
+                  className="bg-gray-200 appearance-none border-2 border-gray-200 
                     rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none 
                     focus:bg-white focus:border-purple-500"
                   id="inline-full-name"
