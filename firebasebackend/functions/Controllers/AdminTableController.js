@@ -2,7 +2,7 @@ const firebase = require("../firebase").default;
 
 const loginController = {
   getdata(req, res) {
-    const [order, setOrder] = useState([]);
+    const order = {};
     const unsubscribe = firebase
       .firestore()
       .collection("orderdata")
@@ -12,9 +12,9 @@ const loginController = {
           id: i.id,
           ...i.data(),
         }));
-        setOrder(newOrder);
+        order = newOrder;
       });
-    res.send(order);
+    res.json(order);
     return () => unsubscribe();
   },
 };

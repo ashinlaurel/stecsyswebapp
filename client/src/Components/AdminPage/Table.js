@@ -107,7 +107,7 @@ const TableData = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody>
+                {/* <tbody>
                   <tr>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <div class="flex items-center">
@@ -260,8 +260,8 @@ const TableData = () => {
                       <p class="text-gray-900 whitespace-no-wrap">Cookies</p>
                     </td>
                   </tr>
-                </tbody>
-                {/* <tbody>
+                </tbody> */}
+                <tbody>
                   {order.map((doc) => (
                     <tr>
                       <td class="border px-4 py-2 border border-gray-500">
@@ -281,7 +281,7 @@ const TableData = () => {
                       </td>
                     </tr>
                   ))}
-                </tbody> */}
+                </tbody>
               </table>
               <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
                 <span class="text-xs xs:text-sm text-gray-900">
