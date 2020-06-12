@@ -14,7 +14,7 @@ app.get("/test", (req, res) => {
 });
 
 app.post("/signup", (req, res) => {
-  console.log(res.body);
+  console.log(req.body);
   const newUser = {
     email: req.body.email,
     password: req.body.password,
