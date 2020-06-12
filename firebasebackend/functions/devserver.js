@@ -1,14 +1,15 @@
 const express = require("express");
 const admin= require('firebase-admin');
-const firebase = require('firebase');
-var config= require('./firebaseconfig');
+
 var bodyParser = require('body-parser');
 
 const app = express();
+const router = express.Router();
 admin.initializeApp();
-firebase.initializeApp(config);
+const firebases= require('./firebase');
 app.use(bodyParser());
  
+const loginController = require('./Controllers/LoginController')
 
 
 const PORT = 3001;
@@ -18,45 +19,8 @@ app.get("/test", (req, res) => {
   return res.send("hello");
 });
 
-<<<<<<< HEAD
 app.post('/signup', (req, res) => {
-    console.log(req.body)
-    const newUser={
-      email:req.body.email,
-      password:req.body.password,
-      handle:req.body.handle,
-    }
-    firebase.auth().createUserWithEmailAndPassword(newUser.email,newUser.password)
-    .then(data=>{
-      return res
-        .status(201) 
-        .json({message:`new user ${data.user.uid} Created `});
-    }).catch(err=>{
-      console.log(err);
-      return res
-        .status(500)
-        .json({message:`Error ${err.code}`});
-    })
-=======
-app.post("/signup", (req, res) => {
-  console.log(res.body);
-  const newUser = {
-    email: req.body.email,
-    password: req.body.password,
-    handle: req.body.handle,
-  };
-  // firebase.auth().createUserWithEmailAndPassword(newUser.email,newUser.password)
-  // .then(data=>{
-  //   return res
-  //     .status(201)
-  //     .json({message:`new user ${data.user.uid} Created `});
-  // }).catch(err=>{
-  //   console.log(err);
-  //   return res
-  //     .status(500)
-  //     .json({message:`Error ${err.code}`});
-  // })
->>>>>>> 71de15a10155ad5a65a00931a1bc28858b1afc6b
+    loginController.signup(req,res);
 });
 
 app.listen(PORT, () => {
