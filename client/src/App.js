@@ -10,6 +10,7 @@ import Order from "./Components/Order";
 //   "https://us-central1-stecsys-app.cloudfunctions.net/api";
 // --------Also dont forget to change proxy in client's package.json---------------------------------------------
 
+axios.defaults.baseURL = "http://localhost:3001";
 function App() {
   return (
     <div className="">

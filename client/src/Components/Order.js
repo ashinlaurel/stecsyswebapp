@@ -26,9 +26,10 @@ export default function Order() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Submitted");
     axios
       .post("/neworder", values)
-      .then(() => console.log("Order Created"))
+      .then(() => setValues(theform))
       .catch((err) => {
         console.log(err);
       });
