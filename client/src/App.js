@@ -6,6 +6,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Order from "./Components/Order";
 import Admin from "./Components/AdminPage/Admin";
 import Login from "./Components/Login";
+import Signup from "./Components/Signup";
+import LoginContextProvider from "./Context/LoginContext";
 
 // Uncomment During Production-----------------------------------------------------------------------------------
 // axios.defaults.baseURL =
@@ -15,6 +17,7 @@ import Login from "./Components/Login";
 axios.defaults.baseURL = "http://localhost:3001";
 function App() {
   return (
+    // <LoginContextProvider>
     <div className="">
       <BrowserRouter>
         <Route exact path="/">
@@ -31,10 +34,14 @@ function App() {
         </Route>
         <Route exact path="/login">
           {" "}
-          <Login/> {" "}
+          <Login />{" "}
+        </Route>
+        <Route exact path="/signup">
+          <Signup />
         </Route>
       </BrowserRouter>
     </div>
+    // </LoginContextProvider>
   );
 }
 
