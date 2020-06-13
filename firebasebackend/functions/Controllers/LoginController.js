@@ -15,7 +15,9 @@ const loginController = {
       .get()
       .then((doc) => {
         if (doc.exists) {
-          return res.status(400).json({ handle: "This handle Already taken" });
+          return res
+            .status(400)
+            .json({ message: "This UserName Already taken" });
         } else {
           return firebase
             .auth()
@@ -42,8 +44,13 @@ const loginController = {
       })
       .catch((err) => {
         console.log(err);
-
-        return res.status(500).json({ error: err.code });
+        if (err.code == "auth/invalid-email")
+          return res.status(400).json({ message: "Invalid Email" });
+        else if (err.code == "auth/email-already-in-use")
+          return res.status(400).json({ message: "Email Already in Use" });
+        else if (err.code == "This handle Already taken")
+          return res.status(400).json({ message: "Username Already Taken" });
+        else return res.status(500).json({ error: err.code });
       });
   },
   login(req, res) {
