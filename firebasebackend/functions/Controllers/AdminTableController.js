@@ -6,12 +6,14 @@ const loginController = {
     const unsubscribe = firebase
       .firestore()
       .collection("orderdata")
-      //   .orderBy(SORT_OPTIONS[sortBy].column, SORT_OPTIONS[sortBy].direction)
+      // .orderBy(SORT_OPTIONS[sortBy].column, SORT_OPTIONS[sortBy].direction)
+      .orderBy("phone", "desc")
       .onSnapshot((snapshot) => {
         let newOrder = snapshot.docs.map((i) => ({
           id: i.id,
           ...i.data(),
         }));
+        console.log(newOrder);
         res.status(200).json(newOrder);
         // res.json(newOrder);
         // console.log(newOrder);

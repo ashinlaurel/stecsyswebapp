@@ -11,18 +11,17 @@ const orderFormController = {
       companyname: req.body.companyname,
       orders: req.body.orders,
     };
-    // console.log(neworder);
+    console.log(neworder);
     const db = firebase.firestore();
     db.collection("orderdata")
-      .add({
-        name: neworder.name,
-        phone: neworder.phone,
-        email: neworder.email,
-        companyname: neworder.companyname,
-        orders: neworder.orders,
-      })
+      .add(neworder)
       .then((ref) => {
         console.log("Added document with ID: ", ref.id);
+        // return res.status(200).json({ massage: "Docidement Added" });
+      })
+      .catch((err) => {
+        console.log(err.code);
+        res.status(500).json({ err: err.code });
       });
   },
 };
