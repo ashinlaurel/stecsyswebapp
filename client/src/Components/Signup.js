@@ -1,11 +1,34 @@
 import React, { useState } from "react";
 import LoginContextProvider, { LoginContext } from "../Context/LoginContext";
+import Axios from "axios";
 
 export default function Signup() {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confPassword, setConfPassword] = useState("");
+  const [username, setUsername] = useState("front");
+  const [email, setEmail] = useState("fron@end.com");
+  const [password, setPassword] = useState("password");
+  const [confPassword, setConfPassword] = useState("password");
+  const [err, setErr] = useState("");
+
+  const handleSubmit = (e) => {
+    setErr("");
+    e.preventDefault();
+    const userCred = { handle: username, email, password, confPassword };
+    if (password !== confPassword) setErr("Passwords Dont Match");
+    else {
+      Axios.post("/signup", userCred)
+        .then((res) => {
+          console.log(res);
+          setUsername("");
+          setEmail("");
+          setPassword("");
+          setConfPassword("");
+          setErr("Account Created");
+        })
+        .catch((err) => {
+          setErr(err.response.data.message);
+        });
+    }
+  };
 
   return (
     <>
@@ -71,6 +94,10 @@ export default function Signup() {
                                 className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
                                 placeholder="Email"
                                 style={{ transition: "all .15s ease" }}
+                                value={email}
+                                onChange={(e) => {
+                                  setEmail(e.target.value);
+                                }}
                               />
                             </div>
 
@@ -86,6 +113,10 @@ export default function Signup() {
                                 className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
                                 placeholder="Password"
                                 style={{ transition: "all .15s ease" }}
+                                value={password}
+                                onChange={(e) => {
+                                  setPassword(e.target.value);
+                                }}
                               />
                             </div>
 
@@ -101,6 +132,10 @@ export default function Signup() {
                                 className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
                                 placeholder="Confirm Password"
                                 style={{ transition: "all .15s ease" }}
+                                value={confPassword}
+                                onChange={(e) => {
+                                  setConfPassword(e.target.value);
+                                }}
                               />
                             </div>
 
@@ -109,9 +144,13 @@ export default function Signup() {
                                 className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
                                 type="button"
                                 style={{ transition: "all .15s ease" }}
+                                onClick={(e) => handleSubmit(e)}
                               >
                                 Sign Up
                               </button>
+                            </div>
+                            <div className="text-center">
+                              <p> {err} </p>
                             </div>
                           </form>
                         </div>
