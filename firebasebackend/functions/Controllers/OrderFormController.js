@@ -1,3 +1,5 @@
+const { ref } = require("firebase-functions/lib/providers/database");
+
 const firebase = require("../firebase").default;
 
 const orderFormController = {
@@ -11,13 +13,17 @@ const orderFormController = {
     };
     // console.log(neworder);
     const db = firebase.firestore();
-    db.collection("orderdata").add({
-      name: neworder.name,
-      phone: neworder.phone,
-      email: neworder.email,
-      companyname: neworder.companyname,
-      orders: neworder.orders,
-    });
+    db.collection("orderdata")
+      .add({
+        name: neworder.name,
+        phone: neworder.phone,
+        email: neworder.email,
+        companyname: neworder.companyname,
+        orders: neworder.orders,
+      })
+      .then((ref) => {
+        console.log("Added document with ID: ", ref.id);
+      });
   },
 };
 

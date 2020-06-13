@@ -27,11 +27,12 @@ app.post("/signup", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  loginController.login(req,res);
-}); 
+  loginController.login(req, res);
+});
 
 app.post("/neworder", (req, res) => {
   orderFormController.theorder(req, res);
+  return res.send("Exiting new order backend");
 });
 
 app.get("/output", (req, res) => {
