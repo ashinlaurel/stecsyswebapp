@@ -40,6 +40,7 @@ const adminTableController = {
         .firestore()
         .collection("orderdata")
         .orderBy("name")
+        .where("createdat", "==", dateDetails)
         .startAt(search)
         .endAt(search + "\uf8ff")
         .get()
