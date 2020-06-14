@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const SORT_OPTIONS = {
-  NAME_ASC: { column: "name", direction: "asc" },
-  NAME_DESC: { column: "name", direction: "desc" },
-};
-
 const Getdata = (sortBy = "NAME_ASC") => {
   const [order, setOrder] = useState([]);
+  let sortdetails = { details: sortBy };
   useEffect(() => {
     axios
-      .get("/output", sortBy)
+      .post("/output", sortdetails)
       .then((res) => {
         const neworder = res.data;
         setOrder(neworder);
@@ -53,11 +49,15 @@ const TableData = () => {
                 </div>
               </div>
               <div class="relative">
-                <select class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
-                  <option>Date(Latest)</option>
-                  <option>Date(Oldest)</option>
-                  <option>Name(A-Z)</option>
-                  <option>Name(Z-A)</option>
+                <select
+                  class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500"
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.currentTarget.value)}
+                >
+                  <option value="NAME_ASC">Name(A-Z)</option>
+                  <option value="NAME_DESC">Name(Z-A)</option>
+                  <option value="DATE_ASC">Date(Latest)</option>
+                  <option value="DATE_DESC">Date(Oldest)</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
@@ -116,26 +116,32 @@ const TableData = () => {
                 <tbody>
                   {order.map((doc) => (
                     <tr>
-                      <td class="border px-4 py-2 border border-gray-500">
+                      <td className="border-b border-gray-300  px-4 py-2 ">
                         {doc.createdat}
                       </td>
-                      <td class="border px-4 py-2 border border-gray-500">
+                      <td className="border-b border-gray-300 px-4 py-2 ">
                         {doc.name}
                       </td>
-                      <td class="border px-4 py-2 border border-gray-500">
+                      <td className="border-b border-gray-300 px-4 py-2 ">
                         {doc.phone}
                       </td>
-                      <td class="border px-4 py-2 border border-gray-500">
+                      <td className="border-b border-gray-300 px-4 py-2 ">
                         {doc.email}
                       </td>
-                      <td class="border px-4 py-2 border border-gray-500">
+                      <td className="border-b border-gray-300 px-4 py-2 ">
                         {doc.companyname}
                       </td>
-                      <td class="border px-4 py-2 border border-gray-500">
+                      <td className="border-b border-gray-300 px-4 py-2 ">
                         {doc.orders}
                       </td>
-                      <td class="border px-4 py-2 border border-gray-500">
-                        {doc.status}
+                      <td className="border-b border-gray-300 px-4 py-2 ">
+                        <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                          <span
+                            aria-hidden
+                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+                          ></span>
+                          <span class="relative">{doc.status}</span>
+                        </span>
                       </td>
                     </tr>
                   ))}
