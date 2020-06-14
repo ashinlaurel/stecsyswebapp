@@ -5,7 +5,7 @@ import Calendar from "react-calendar";
 const Getdata = (sortBy = "NAME_ASC", datesel, refresh) => {
   const [order, setOrder] = useState([]);
   // let d = datesel.split(" ")[0];
-  console.log(datesel);
+  // console.log(datesel);
   let sortdetails = { details: sortBy, date: datesel };
   useEffect(() => {
     axios

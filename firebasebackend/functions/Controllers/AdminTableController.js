@@ -17,7 +17,7 @@ const adminTableController = {
     const unsubscribe = firebase
       .firestore()
       .collection("orderdata")
-      // .where("createdat", "==", "Sat Jun 13 2020")
+      .where("createdat", "==", "Sun Jun 14 2020")
       .orderBy(
         SORT_OPTIONS[sortDetails].column,
         SORT_OPTIONS[sortDetails].direction
