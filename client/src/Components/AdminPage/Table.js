@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Calendar from "react-calendar";
 
-const Getdata = (sortBy = "NAME_ASC") => {
+const Getdata = (sortBy = "NAME_ASC", datesel, refresh) => {
   const [order, setOrder] = useState([]);
-  let sortdetails = { details: sortBy };
+  // let d = datesel.split(" ")[0];
+  console.log(datesel);
+  let sortdetails = { details: sortBy, date: datesel };
   useEffect(() => {
     axios
       .post("/output", sortdetails)
@@ -14,7 +17,7 @@ const Getdata = (sortBy = "NAME_ASC") => {
       .catch((err) => {
         console.log(err);
       });
-  }, [sortBy]);
+  }, [sortBy, refresh]);
 
   // console.log(order);
   return order;
@@ -22,28 +25,33 @@ const Getdata = (sortBy = "NAME_ASC") => {
 
 const TableData = () => {
   const [sortBy, setSortBy] = useState("NAME_ASC");
-  const [search, setSearch] = useState("test");
-  const order = Getdata(sortBy);
-  useEffect(() => {
-    console.log(search);
-    axios
-      .post("/searchdata", { search })
-      .then((res) => {
-        const newOrder = res.data;
-        console.log(newOrder);
-        // setOrder(newOrder);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [search]);
-
+  const [refresh, setRefresh] = useState(false);
+  // const todaydate = new Date().toDateString();
+  const todaydate = new Date();
+  const [datesel, setDateSel] = useState(todaydate);
+  const onDateSelection = (date) => {
+    // let year = date.getFullYear();
+    setDateSel(date);
+  };
+  const order = Getdata(sortBy, datesel, refresh);
   return (
     <body class="antialiased font-sans bg-gray-200">
       <div class="container mx-auto px-4 sm:px-8">
         <div class="py-8">
-          <div>
-            <h2 class="text-2xl font-semibold leading-tight">Users</h2>
+          <div className="flex justify-start items-center">
+            <div>
+              <h2 class="text-3xl leading-tight">Orders</h2>
+            </div>
+            <button
+              className="bg-blue-500 text-white hover:bg-blue-700  font-bold uppercase text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none ml-56"
+              type="button"
+              style={{ transition: "all .15s ease" }}
+              onClick={() => {
+                setRefresh(!refresh);
+              }}
+            >
+              <i className="fa fa-refresh"></i> Refresh
+            </button>
           </div>
           <div class="my-2 flex sm:flex-row flex-col">
             <div class="flex flex-row mb-1 sm:mb-0">
@@ -178,6 +186,9 @@ const TableData = () => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="w-64">
+            <Calendar onChange={onDateSelection} value={datesel} />
           </div>
         </div>
       </div>
