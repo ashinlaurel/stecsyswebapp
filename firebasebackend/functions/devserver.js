@@ -35,6 +35,10 @@ app.post("/neworder", (req, res) => {
   return res.send("Exiting new order backend");
 });
 
+app.post("/searchdata", (req, res) => {
+  adminTableController.searchdata(req, res);
+});
+
 app.post("/output", (req, res) => {
   adminTableController.getdata(req, res);
   // console.log(req.body);
