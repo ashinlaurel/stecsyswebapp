@@ -17,7 +17,6 @@ import LoginContextProvider from "./Context/LoginContext";
 axios.defaults.baseURL = "http://localhost:3001";
 function App() {
   return (
-    // <LoginContextProvider>
     <div className="">
       <BrowserRouter>
         <Route exact path="/">
@@ -37,11 +36,12 @@ function App() {
           <Login />{" "}
         </Route>
         <Route exact path="/signup">
-          <Signup />
+          <LoginContextProvider>
+            <Signup />
+          </LoginContextProvider>
         </Route>
       </BrowserRouter>
     </div>
-    // </LoginContextProvider>
   );
 }
 

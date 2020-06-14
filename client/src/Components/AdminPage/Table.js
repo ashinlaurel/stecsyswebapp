@@ -5,8 +5,8 @@ import Calendar from "react-calendar";
 const Getdata = (sortBy = "NAME_ASC", datesel, refresh) => {
   const [order, setOrder] = useState([]);
   // let d = datesel.split(" ")[0];
-  // console.log(datesel);
-  let sortdetails = { details: sortBy, date: datesel };
+  console.log(datesel.toDateString(), "chose");
+  let sortdetails = { details: sortBy, date: datesel.toDateString() };
   useEffect(() => {
     axios
       .post("/output", sortdetails)
@@ -28,6 +28,7 @@ const TableData = () => {
   const [refresh, setRefresh] = useState(false);
   // const todaydate = new Date().toDateString();
   const todaydate = new Date();
+  // console.log(todaydate.toDateString(), "today");
   const [datesel, setDateSel] = useState(todaydate);
   const onDateSelection = (date) => {
     // let year = date.getFullYear();
