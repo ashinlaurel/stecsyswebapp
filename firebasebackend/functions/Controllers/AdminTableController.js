@@ -36,6 +36,26 @@ const adminTableController = {
 
     return () => unsubscribe();
   },
+  searchdata(req, res) {
+    const search = req.body.search;
+    firebase
+      .firestore()
+      .collection("orderdata")
+      .orderBy("name")
+      .startAt(search)
+      .endAt(search + "\uf8ff")
+      .get()
+      .then(function (snapshot) {
+        let newOrder = snapshot.docs.map((i) => ({
+          id: i.id,
+          ...i.data(),
+        }));
+        return res.status(200).json(newOrder);
+      })
+      .catch(function (error) {
+        console.log("Error getting documents: ", error);
+      });
+  },
 };
 
 module.exports = adminTableController;
