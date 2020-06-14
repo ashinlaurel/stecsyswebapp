@@ -5,8 +5,8 @@ import Calendar from "react-calendar";
 const Getdata = (sortBy = "NAME_ASC", datesel, refresh) => {
   const [order, setOrder] = useState([]);
   // let d = datesel.split(" ")[0];
-  console.log(datesel);
-  let sortdetails = { details: sortBy, date: datesel };
+  console.log(datesel.toDateString(), "chose");
+  let sortdetails = { details: sortBy, date: datesel.toDateString() };
   useEffect(() => {
     axios
       .post("/output", sortdetails)
@@ -28,6 +28,7 @@ const TableData = () => {
   const [refresh, setRefresh] = useState(false);
   // const todaydate = new Date().toDateString();
   const todaydate = new Date();
+  // console.log(todaydate.toDateString(), "today");
   const [datesel, setDateSel] = useState(todaydate);
   const onDateSelection = (date) => {
     // let year = date.getFullYear();
@@ -103,8 +104,8 @@ const TableData = () => {
                 </svg>
               </span>
               <input
-                vlaue={search}
-                onChange={(e) => setSearch(e.target.value)}
+                // vlaue={search}
+                // onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search"
                 class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
               />

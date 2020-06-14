@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import LoginContextProvider, { LoginContext } from "../Context/LoginContext";
+import React, { useState, useContext } from "react";
+import { LoginContext } from "../Context/LoginContext";
 import Axios from "axios";
 
 export default function Signup() {
@@ -9,7 +9,10 @@ export default function Signup() {
   const [confPassword, setConfPassword] = useState("password");
   const [err, setErr] = useState("");
 
+  const context = useContext(LoginContext); /////////// ffffffffiiiiiiiixxxxxxxxxxxxxxxx
+
   const handleSubmit = (e) => {
+    console.log(context);
     setErr("");
     e.preventDefault();
     const userCred = { handle: username, email, password, confPassword };
@@ -33,10 +36,10 @@ export default function Signup() {
   return (
     <>
       <LoginContext.Consumer>
-        {(conext) => {
+        {(value) => {
+          console.log(value);
           return (
             <main>
-              <div className="text-lg ">{}</div>
               <div className="text-xl"> </div>
               <section className="absolute w-full h-full">
                 <div
@@ -58,6 +61,7 @@ export default function Signup() {
                               Sign Up
                             </h6>
                           </div>
+                          <div className="text-lg m-20">sdassdaasdasd</div>
 
                           <hr className="mt-6 border-b-1 border-gray-400" />
                         </div>
