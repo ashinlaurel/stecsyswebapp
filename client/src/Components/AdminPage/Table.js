@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Calendar from "react-calendar";
 
-const Getdata = (sortBy = "NAME_ASC") => {
+const Getdata = (sortBy = "NAME_ASC", datesel) => {
   const [order, setOrder] = useState([]);
-  let sortdetails = { details: sortBy };
+  // let d = datesel.split(" ")[0];
+  console.log(datesel);
+  let sortdetails = { details: sortBy, date: datesel };
   useEffect(() => {
     axios
       .post("/output", sortdetails)
@@ -22,7 +25,14 @@ const Getdata = (sortBy = "NAME_ASC") => {
 
 const TableData = () => {
   const [sortBy, setSortBy] = useState("NAME_ASC");
-  const order = Getdata(sortBy);
+  // const todaydate = new Date().toDateString();
+  const todaydate = new Date();
+  const [datesel, setDateSel] = useState(todaydate);
+  const onDateSelection = (date) => {
+    // let year = date.getFullYear();
+    setDateSel(date);
+  };
+  const order = Getdata(sortBy, datesel);
   return (
     <body class="antialiased font-sans bg-gray-200">
       <div class="container mx-auto px-4 sm:px-8">
@@ -161,6 +171,9 @@ const TableData = () => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="w-64">
+            <Calendar onChange={onDateSelection} value={datesel} />
           </div>
         </div>
       </div>

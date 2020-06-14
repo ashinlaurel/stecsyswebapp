@@ -11,10 +11,13 @@ const adminTableController = {
   getdata(req, res) {
     let order = {};
     let sortDetails = req.body.details;
-    // console.log(sortDetails);
+    let dateDetails = req.body.date;
+    // dateDetails = dateDetails.toDateString();
+    console.log(dateDetails);
     const unsubscribe = firebase
       .firestore()
       .collection("orderdata")
+      // .where("createdat", "==", "Sat Jun 13 2020")
       .orderBy(
         SORT_OPTIONS[sortDetails].column,
         SORT_OPTIONS[sortDetails].direction
