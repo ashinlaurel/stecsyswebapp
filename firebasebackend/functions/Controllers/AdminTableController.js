@@ -12,52 +12,48 @@ const adminTableController = {
     let order = {};
     let sortDetails = req.body.details;
     let dateDetails = req.body.date;
+    let search = req.body.search;
     // dateDetails = dateDetails.toDateString();
-    console.log(dateDetails);
-    const unsubscribe = firebase
-      .firestore()
-      .collection("orderdata")
-      .where("createdat", "==", dateDetails)
-      .orderBy(
-        SORT_OPTIONS[sortDetails].column,
-        SORT_OPTIONS[sortDetails].direction
-      )
-      // .orderBy("createdat", "desc")
-      .onSnapshot((snapshot) => {
-        let newOrder = snapshot.docs.map((i) => ({
-          id: i.id,
-          ...i.data(),
-        }));
-        // console.log(newOrder);
-        res.status(200).json(newOrder);
-        // res.json(newOrder);
-        // console.log(newOrder);
-        // order = newOrder ;
+    console.log(search);
+    if (search === "") {
+      const unsubscribe = firebase
+        .firestore()
+        .collection("orderdata")
+        .orderBy(
+          SORT_OPTIONS[sortDetails].column,
+          SORT_OPTIONS[sortDetails].direction
+        )
+        .where("createdat", "==", dateDetails)
+        // .orderBy("createdat", "desc")
+        .onSnapshot((snapshot) => {
+          let newOrder = snapshot.docs.map((i) => ({
+            id: i.id,
+            ...i.data(),
+          }));
+          res.status(200).json(newOrder);
+        });
 
-        // console.log(order);
-      });
-
-    return () => unsubscribe();
-  },
-  searchdata(req, res) {
-    const search = req.body.search;
-    firebase
-      .firestore()
-      .collection("orderdata")
-      .orderBy("name")
-      .startAt(search)
-      .endAt(search + "\uf8ff")
-      .get()
-      .then(function (snapshot) {
-        let newOrder = snapshot.docs.map((i) => ({
-          id: i.id,
-          ...i.data(),
-        }));
-        return res.status(200).json(newOrder);
-      })
-      .catch(function (error) {
-        console.log("Error getting documents: ", error);
-      });
+      return () => unsubscribe();
+    } else {
+      // console.log("in");
+      firebase
+        .firestore()
+        .collection("orderdata")
+        .orderBy("name")
+        .startAt(search)
+        .endAt(search + "\uf8ff")
+        .get()
+        .then(function (snapshot) {
+          let newOrder = snapshot.docs.map((i) => ({
+            id: i.id,
+            ...i.data(),
+          }));
+          return res.status(200).json(newOrder);
+        })
+        .catch(function (error) {
+          console.log("Error getting documents: ", error);
+        });
+    }
   },
 };
 

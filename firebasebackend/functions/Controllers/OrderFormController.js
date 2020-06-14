@@ -20,11 +20,12 @@ const orderFormController = {
       .then((ref) => {
         console.log("Added document with ID: ", ref.id);
         // return res.status(200).json({ message: "Document Added" });
+        return res.status(200).json();
+      })
+      .catch((err) => {
+        console.log(err.code);
+        return res.status(500).json({ err: err.code });
       });
-    // .catch((err) => {
-    //   console.log(err.code);
-    //   return res.status(500).json({ err: err.code });
-    // });
   },
 };
 

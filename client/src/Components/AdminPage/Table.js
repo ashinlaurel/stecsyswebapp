@@ -2,11 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Calendar from "react-calendar";
 
-const Getdata = (sortBy = "NAME_ASC", datesel, refresh) => {
+const Getdata = (sortBy = "NAME_ASC", datesel, refresh, searchpass) => {
   const [order, setOrder] = useState([]);
   // let d = datesel.split(" ")[0];
   console.log(datesel.toDateString(), "chose");
-  let sortdetails = { details: sortBy, date: datesel.toDateString() };
+  let sortdetails = {
+    details: sortBy,
+    date: datesel.toDateString(),
+    search: searchpass,
+  };
+
   useEffect(() => {
     axios
       .post("/output", sortdetails)
@@ -17,7 +22,7 @@ const Getdata = (sortBy = "NAME_ASC", datesel, refresh) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [sortBy, refresh]);
+  }, [sortBy, refresh, datesel, searchpass]);
 
   // console.log(order);
   return order;
@@ -26,15 +31,18 @@ const Getdata = (sortBy = "NAME_ASC", datesel, refresh) => {
 const TableData = () => {
   const [sortBy, setSortBy] = useState("NAME_ASC");
   const [refresh, setRefresh] = useState(false);
-  // const todaydate = new Date().toDateString();
+  const [searchinp, setSearchInp] = useState("");
+  const [searchpass, setSearchPass] = useState("");
   const todaydate = new Date();
-  // console.log(todaydate.toDateString(), "today");
   const [datesel, setDateSel] = useState(todaydate);
   const onDateSelection = (date) => {
-    // let year = date.getFullYear();
     setDateSel(date);
   };
-  const order = Getdata(sortBy, datesel, refresh);
+  const searchSubmit = (e) => {
+    e.preventDefault();
+    setSearchPass(searchinp);
+  };
+  const order = Getdata(sortBy, datesel, refresh, searchpass);
   return (
     <body class="antialiased font-sans bg-gray-200">
       <div class="container mx-auto px-4 sm:px-8">
@@ -103,12 +111,18 @@ const TableData = () => {
                   <path d="M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z"></path>
                 </svg>
               </span>
-              <input
-                // vlaue={search}
-                // onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search"
-                class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
-              />
+              <form
+                onSubmit={(e) => {
+                  searchSubmit(e);
+                }}
+              >
+                <input
+                  value={searchinp}
+                  onChange={(e) => setSearchInp(e.target.value)}
+                  placeholder="Search"
+                  class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
+                />
+              </form>
             </div>
           </div>
           <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
