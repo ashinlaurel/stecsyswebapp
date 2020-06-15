@@ -40,8 +40,8 @@ const adminTableController = {
         .firestore()
         .collection("orderdata")
         .orderBy("name")
-        .startAt(search)
-        .endAt(search + "\uf8ff")
+        .startAt(search.toUpperCase())
+        .endAt(search.toLowerCase() + "\uf8ff")
         .get()
         .then(function (snapshot) {
           let newOrder = snapshot.docs.map((i) => ({
