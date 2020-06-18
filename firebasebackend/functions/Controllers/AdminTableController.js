@@ -16,7 +16,7 @@ const adminTableController = {
     // dateDetails = dateDetails.toDateString();
     console.log(search);
     if (search === "") {
-      const unsubscribe = firebase
+      firebase
         .firestore()
         .collection("orderdata")
         .orderBy(
@@ -24,16 +24,27 @@ const adminTableController = {
           SORT_OPTIONS[sortDetails].direction
         )
         .where("createdat", "==", dateDetails)
-        // .orderBy("createdat", "desc")
-        .onSnapshot((snapshot) => {
+        .get()
+        .then(function (snapshot) {
           let newOrder = snapshot.docs.map((i) => ({
             id: i.id,
             ...i.data(),
           }));
           res.status(200).json(newOrder);
+        })
+        .catch((err) => {
+          console.log("Error getting documents: ", error);
         });
+      // .orderBy("createdat", "desc")
+      //   .onSnapshot((snapshot) => {
+      //     let newOrder = snapshot.docs.map((i) => ({
+      //       id: i.id,
+      //       ...i.data(),
+      //     }));
+      //     res.status(200).json(newOrder);
+      //   });
 
-      return () => unsubscribe();
+      // return () => unsubscribe();
     } else {
       // console.log("in");
       firebase
@@ -70,9 +81,9 @@ const adminTableController = {
       })
       .catch((err) => {
         console.log(err.code);
-        return;
-        // return res.status(500).json({ error: err.code });
+        return res.status(500).json({ error: err.code });
       });
+
     // return res.status(200).json({ message: "completed" });
   },
 };
