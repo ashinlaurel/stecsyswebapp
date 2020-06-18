@@ -16,19 +16,21 @@ export default function Home() {
       </div>
       <div className="h-40"></div>
       <div className="flex justify-around bg-white h-full">
-        <div className="flex flex-col border h-full justify-center ">
-          <div className="text-6xl border border-black">Stec Systems</div>
-          <div className="text-2xl border border-black">
-            Suppliers All Your Computer Needs
+        <div className="flex flex-col  h-full justify-center ">
+          <div className="text-6xl  border-black">Stec Systems</div>
+          <div className="text-2xl  border-black">
+            Suppliers For All Your Computer Needs
           </div>
           <div className="text-left">
-            <button
-              className="bg-blue-500 text-white hover:bg-blue-700  font-bold uppercase text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
-              type="button"
-              style={{ transition: "all .15s ease" }}
-            >
-              <i className="fa fa-shopping-cart"></i> Order Now
-            </button>
+            <Link to="/order">
+              <button
+                className="bg-blue-500 text-white hover:bg-blue-700  font-bold uppercase text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
+                type="button"
+                style={{ transition: "all .15s ease" }}
+              >
+                <i className="fa fa-shopping-cart"></i> Order Now
+              </button>
+            </Link>
           </div>
         </div>
         <div className="h-full border border-black">
