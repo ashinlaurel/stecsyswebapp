@@ -5,7 +5,7 @@ import Calendar from "react-calendar";
 const Getdata = (sortBy = "NAME_ASC", datesel, refresh, searchpass) => {
   const [order, setOrder] = useState([]);
   // let d = datesel.split(" ")[0];
-  console.log(datesel.toDateString(), "chose");
+  // console.log(datesel.toDateString(), "chose");
   let sortdetails = {
     details: sortBy,
     date: datesel.toDateString(),
@@ -38,6 +38,21 @@ const TableData = () => {
   const onDateSelection = (date) => {
     setDateSel(date);
   };
+  const toggleStatus = (id, stat) => {
+    let nextStat;
+    if (stat == "active") nextStat = "completed";
+    else nextStat = "active";
+    axios
+      .post("/togglestatus", { id: id, status: nextStat })
+      .then(() => {
+        // console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(id);
+  };
+
   const searchSubmit = (e) => {
     e.preventDefault();
     setSearchPass(searchinp);
@@ -155,7 +170,7 @@ const TableData = () => {
                 </thead>
                 <tbody>
                   {order.map((doc) => (
-                    <tr>
+                    <tr key={doc.id}>
                       <td className="border-b border-gray-300  px-4 py-2 ">
                         {doc.createdat}
                       </td>
@@ -175,7 +190,10 @@ const TableData = () => {
                         {doc.orders}
                       </td>
                       <td className="border-b border-gray-300 px-4 py-2 ">
-                        <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                        <span
+                          onClick={() => toggleStatus(doc.id, doc.status)}
+                          class="cursor-pointer relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
+                        >
                           <span
                             aria-hidden
                             class="absolute inset-0 bg-green-200 opacity-50 rounded-full"

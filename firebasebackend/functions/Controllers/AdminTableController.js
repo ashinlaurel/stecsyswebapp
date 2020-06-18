@@ -55,6 +55,26 @@ const adminTableController = {
         });
     }
   },
+  toggleStatus(req, res) {
+    const id = req.body.id;
+    const stat = req.body.status;
+    console.log(req.body.id, req.body.status, "heeeeerrrrreeee");
+    firebase
+      .firestore()
+      .collection("orderdata")
+      .doc(id)
+      .update({ status: stat })
+      .then(function () {
+        console.log("Document successfully written!");
+        return res.status(500).json({ error: err.code });
+      })
+      .catch((err) => {
+        console.log(err.code);
+        return;
+        // return res.status(500).json({ error: err.code });
+      });
+    // return res.status(200).json({ message: "completed" });
+  },
 };
 
 module.exports = adminTableController;

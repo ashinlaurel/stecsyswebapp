@@ -44,6 +44,10 @@ app.post("/output", (req, res) => {
   // console.log(req.body);
 });
 
+app.post("/togglestatus", (req, res) => {
+  adminTableController.toggleStatus(req, res);
+});
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server Listening on port ${PORT}`);
