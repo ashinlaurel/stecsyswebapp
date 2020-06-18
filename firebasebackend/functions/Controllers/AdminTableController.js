@@ -77,7 +77,7 @@ const adminTableController = {
       .update({ status: stat })
       .then(function () {
         console.log("Document successfully written!");
-        return res.status(500).json({ error: err.code });
+        return res.status(200).json({ message: "Updated" });
       })
       .catch((err) => {
         console.log(err.code);

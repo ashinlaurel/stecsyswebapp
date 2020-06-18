@@ -45,7 +45,8 @@ const TableData = () => {
     axios
       .post("/togglestatus", { id: id, status: nextStat })
       .then(() => {
-        // console.log(res);
+        setRefresh(!refresh);
+        console.log("res");
       })
       .catch((err) => {
         console.log(err);
