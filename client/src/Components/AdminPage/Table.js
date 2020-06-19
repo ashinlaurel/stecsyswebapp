@@ -18,7 +18,7 @@ const TableData = () => {
   const todaydate = new Date();
   const [datesel, setDateSel] = useState(todaydate);
   const [datedrop, setDateDrop] = useState(false);
-  const [lastId, setLastId] = useState("0");
+  const [showAll, setShowAll] = useState("Show By Date");
 
   const onDateSelection = (date) => {
     setDateSel(date);
@@ -85,21 +85,20 @@ const TableData = () => {
     details: sortBy,
     date: datesel.toDateString(),
     search: searchpass,
+    showAll: showAll,
   };
   useEffect(() => {
-    // console.log("useeffect rerun");
+    console.log("useeffect rerun");
     axios
       .post("/output", sortdetails)
       .then((res) => {
         const neworder = res.data;
-        setLastId(res.data[res.data.length - 1].id);
-
         setOrder(neworder);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [refresh, datesel, searchpass]);
+  }, [refresh, datesel, searchpass, showAll]);
 
   return (
     <body class="antialiased font-sans bg-gray-200">
@@ -194,6 +193,17 @@ const TableData = () => {
               }}
             >
               <i className="fa fa-refresh"></i> Refresh
+            </button>
+            <button
+              className="ml-5 bg-blue-500 text-white hover:bg-blue-700 font-bold uppercase text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
+              type="button"
+              style={{ transition: "all .15s ease" }}
+              onClick={() => {
+                showAll == "ALL" ? setShowAll("DATE") : setShowAll("ALL");
+              }}
+            >
+              <i className="fa fa-refresh"></i>{" "}
+              {showAll == "ALL" ? "Show By Date" : "Show All"}
             </button>
           </div>
           <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
