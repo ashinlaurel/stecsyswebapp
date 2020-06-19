@@ -11,6 +11,7 @@ const orderFormController = {
       createdat: today.toDateString(),
       time: timer,
       name: req.body.name,
+      name_lower: req.body.name.toLowerCase(),
       phone: req.body.phone,
       email: req.body.email,
       companyname: req.body.companyname,

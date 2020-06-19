@@ -5,14 +5,17 @@ const adminTableController = {
     let order = {};
     let sortDetails = req.body.details;
     let dateDetails = req.body.date;
-    let search = req.body.search;
+    let search = req.body.search.toLowerCase();
+    let showAll = req.body.showAll;
     // dateDetails = dateDetails.toDateString();
     console.log(search);
     if (search === "") {
-      unsubscribe = firebase
-        .firestore()
-        .collection("orderdata")
-        .where("createdat", "==", dateDetails)
+      unsubscribe = firebase.firestore().collection("orderdata");
+      if (showAll != "ALL") {
+        console.log("all");
+        unsubscribe = unsubscribe.where("createdat", "==", dateDetails);
+      }
+      unsubscribe
         .get()
         .then(function (snapshot) {
           let newOrder = snapshot.docs.map((i) => ({
@@ -44,7 +47,7 @@ const adminTableController = {
       firebase
         .firestore()
         .collection("orderdata")
-        .orderBy("name")
+        .orderBy("name_lower")
         .startAt(search)
         .endAt(search + "\uf8ff")
         .get()
