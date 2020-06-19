@@ -32,7 +32,6 @@ app.post("/login", (req, res) => {
 
 app.post("/neworder", (req, res) => {
   orderFormController.theorder(req, res);
-  return res.send("Exiting new order backend");
 });
 
 app.post("/searchdata", (req, res) => {

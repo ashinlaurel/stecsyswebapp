@@ -2,33 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Calendar from "react-calendar";
 
-const Getdata = (sortBy = "NAME_ASC", datesel, refresh, searchpass) => {
-  const [order, setOrder] = useState([]);
-  // let d = datesel.split(" ")[0];
-  // console.log(datesel.toDateString(), "chose");
-  let sortdetails = {
-    details: sortBy,
-    date: datesel.toDateString(),
-    search: searchpass,
+const TableData = () => {
+  const SORT_OPTIONS = {
+    NAME_ASC: { column: "name", direction: "asc" },
+    NAME_DESC: { column: "name", direction: "desc" },
+    DATE_ASC: { column: "createdat", direction: "asc" },
+    DATE_DESC: { column: "createdat", direction: "desc" },
   };
 
-  useEffect(() => {
-    axios
-      .post("/output", sortdetails)
-      .then((res) => {
-        const neworder = res.data;
-        setOrder(neworder);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [sortBy, refresh, datesel, searchpass]);
-
-  // console.log(order);
-  return order;
-};
-
-const TableData = () => {
+  const [order, setOrder] = useState([]);
   const [sortBy, setSortBy] = useState("NAME_ASC");
   const [refresh, setRefresh] = useState(false);
   const [searchinp, setSearchInp] = useState("");
@@ -36,16 +18,19 @@ const TableData = () => {
   const todaydate = new Date();
   const [datesel, setDateSel] = useState(todaydate);
   const [datedrop, setDateDrop] = useState(false);
+
   const onDateSelection = (date) => {
     setDateSel(date);
     setDateDrop(!datedrop);
   };
+
   const dateselectbutton = () => {
     setDateDrop(!datedrop);
   };
+
   const toggleStatus = (id, stat) => {
     let nextStat;
-    if (stat == "active") nextStat = "completed";
+    if (stat === "active") nextStat = "completed";
     else nextStat = "active";
     axios
       .post("/togglestatus", { id: id, status: nextStat })
@@ -63,7 +48,55 @@ const TableData = () => {
     e.preventDefault();
     setSearchPass(searchinp);
   };
-  const order = Getdata(sortBy, datesel, refresh, searchpass);
+
+  const onSortToggle = (e) => {
+    setSortBy(e.currentTarget.value);
+    let neworder = order;
+    let direction = SORT_OPTIONS[sortBy].direction;
+    let column = SORT_OPTIONS[sortBy].column;
+    if (direction === "asc") {
+      neworder.sort((a, b) => {
+        if (a[column] < b[column]) {
+          return 1;
+        }
+        if (a[column] > b[column]) {
+          return -1;
+        }
+        return 0;
+      });
+    } else if (direction === "desc") {
+      neworder.sort((a, b) => {
+        if (a[column] < b[column]) {
+          return -1;
+        }
+        if (a[column] > b[column]) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+
+    setOrder(neworder);
+    // console.log(neworder);
+  };
+
+  let sortdetails = {
+    details: sortBy,
+    date: datesel.toDateString(),
+    search: searchpass,
+  };
+  useEffect(() => {
+    axios
+      .post("/output", sortdetails)
+      .then((res) => {
+        const neworder = res.data;
+        setOrder(neworder);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [refresh, datesel, searchpass]);
+
   return (
     <body class="antialiased font-sans bg-gray-200">
       <div class="container mx-auto px-4 sm:px-8">
@@ -104,7 +137,7 @@ const TableData = () => {
                 <select
                   class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500"
                   value={sortBy}
-                  onChange={(e) => setSortBy(e.currentTarget.value)}
+                  onChange={onSortToggle}
                 >
                   <option value="NAME_ASC">Name(A-Z)</option>
                   <option value="NAME_DESC">Name(Z-A)</option>
