@@ -1,0 +1,11 @@
+.appbody {
+  background-color: #935d8c;
+  background-image: url("../assets/overlay.png"),
+    -moz-linear-gradient(45deg, #5f4d93 60%, #e37682 80%);
+  background-image: url("../assets/overlay.png"),
+    -webkit-linear-gradient(45deg, #5f4d93 60%, #e37682 80%);
+  background-image: url("../assets/overlay.png"),
+    -ms-linear-gradient(45deg, #5f4d93 60%, #e37682 80%);
+  background-image: url("../assets/overlay.png"),
+    linear-gradient(45deg, #5f4d93 60%, #e37682 80%);
+}

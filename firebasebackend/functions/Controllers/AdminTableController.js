@@ -16,33 +16,36 @@ const adminTableController = {
     // dateDetails = dateDetails.toDateString();
     console.log(search);
     if (search === "") {
-      firebase
-        .firestore()
-        .collection("orderdata")
-        .orderBy(
-          SORT_OPTIONS[sortDetails].column,
-          SORT_OPTIONS[sortDetails].direction
-        )
-        .where("createdat", "==", dateDetails)
-        .get()
-        .then(function (snapshot) {
-          let newOrder = snapshot.docs.map((i) => ({
-            id: i.id,
-            ...i.data(),
-          }));
-          res.status(200).json(newOrder);
-        })
-        .catch((err) => {
-          console.log("Error getting documents: ", error);
-        });
-      // .orderBy("createdat", "desc")
-      //   .onSnapshot((snapshot) => {
-      //     let newOrder = snapshot.docs.map((i) => ({
-      //       id: i.id,
-      //       ...i.data(),
-      //     }));
-      //     res.status(200).json(newOrder);
-      //   });
+      return (
+        firebase
+          .firestore()
+          .collection("orderdata")
+          .orderBy(
+            SORT_OPTIONS[sortDetails].column,
+            SORT_OPTIONS[sortDetails].direction
+          )
+          // .where("createdat", "==", dateDetails)
+          // .get()
+          // .then(function (snapshot) {
+          //   let newOrder = snapshot.docs.map((i) => ({
+          //     id: i.id,
+          //     ...i.data(),
+          //   }));
+          //   res.status(200).json(newOrder);
+          // })
+          // .catch((err) => {
+          //   console.log("Error getting documents: ", error);
+          //   res.status(500).json(err);
+          // });
+          // .orderBy("createdat", "desc")
+          .onSnapshot((snapshot) => {
+            let newOrder = snapshot.docs.map((i) => ({
+              id: i.id,
+              ...i.data(),
+            }));
+            res.status(200).json(newOrder);
+          })
+      );
 
       // return () => unsubscribe();
     } else {
