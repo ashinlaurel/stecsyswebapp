@@ -4,8 +4,12 @@ const firebase = require("../firebase").default;
 
 const orderFormController = {
   theorder(req, res) {
+    let today = new Date();
+    let timer =
+      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     const neworder = {
-      createdat: new Date().toDateString(),
+      createdat: today.toDateString(),
+      time: timer,
       name: req.body.name,
       phone: req.body.phone,
       email: req.body.email,

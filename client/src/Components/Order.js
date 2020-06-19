@@ -158,7 +158,7 @@ export default function Order() {
               </div>
             </div>
 
-            <button className="py-2 px-6 m-2 rounded-full bg-blue-500 text-white shadow-lg">
+            <button className="py-2 px-6 m-2 rounded-full bg-blue-500 text-white shadow-lg outline-none">
               Order
             </button>
           </form>
