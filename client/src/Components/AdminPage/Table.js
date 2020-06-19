@@ -6,8 +6,8 @@ const TableData = () => {
   const SORT_OPTIONS = {
     NAME_ASC: { column: "name", direction: "asc" },
     NAME_DESC: { column: "name", direction: "desc" },
-    DATE_ASC: { column: "createdat", direction: "asc" },
-    DATE_DESC: { column: "createdat", direction: "desc" },
+    DATE_ASC: { column: "time", direction: "asc" },
+    DATE_DESC: { column: "time", direction: "desc" },
   };
 
   const [order, setOrder] = useState([]);
@@ -86,6 +86,7 @@ const TableData = () => {
     search: searchpass,
   };
   useEffect(() => {
+    // console.log("useeffect rerun");
     axios
       .post("/output", sortdetails)
       .then((res) => {
@@ -198,7 +199,10 @@ const TableData = () => {
                 <thead>
                   <tr>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      Created At
+                      Time
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Date
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Name
@@ -223,6 +227,9 @@ const TableData = () => {
                 <tbody>
                   {order.map((doc) => (
                     <tr key={doc.id}>
+                      <td className="border-b border-gray-300  px-4 py-2 ">
+                        {doc.time}
+                      </td>
                       <td className="border-b border-gray-300  px-4 py-2 ">
                         {doc.createdat}
                       </td>
