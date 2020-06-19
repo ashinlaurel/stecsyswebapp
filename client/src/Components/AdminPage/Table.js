@@ -239,7 +239,7 @@ const TableData = () => {
                   {order.map((doc) => (
                     <tr
                       key={doc.id}
-                      onClick={(doc) => {
+                      onClick={() => {
                         Modalpop(doc);
                       }}
                       className="hover:bg-white cursor-pointer "
@@ -336,7 +336,7 @@ const TableData = () => {
                         Email:{modaldata.email}
                       </div>
                       <p className=" text-gray-600 text-lg leading-relaxed">
-                        Order:{modaldata.order}
+                        Order:{modaldata.orders}
                       </p>
                     </div>
                   </div>
