@@ -18,6 +18,7 @@ const TableData = () => {
   const todaydate = new Date();
   const [datesel, setDateSel] = useState(todaydate);
   const [datedrop, setDateDrop] = useState(false);
+  const [lastId, setLastId] = useState("0");
 
   const onDateSelection = (date) => {
     setDateSel(date);
@@ -90,6 +91,8 @@ const TableData = () => {
       .post("/output", sortdetails)
       .then((res) => {
         const neworder = res.data;
+        setLastId(res.data[res.data.length - 1].id);
+
         setOrder(neworder);
       })
       .catch((err) => {
