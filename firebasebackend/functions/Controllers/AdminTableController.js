@@ -5,7 +5,7 @@ const adminTableController = {
     let order = {};
     let sortDetails = req.body.details;
     let dateDetails = req.body.date;
-    let search = req.body.search;
+    let search = req.body.search.toLowerCase();
     // dateDetails = dateDetails.toDateString();
     console.log(search);
     if (search === "") {
@@ -44,7 +44,7 @@ const adminTableController = {
       firebase
         .firestore()
         .collection("orderdata")
-        .orderBy("name")
+        .orderBy("name_lower")
         .startAt(search)
         .endAt(search + "\uf8ff")
         .get()
