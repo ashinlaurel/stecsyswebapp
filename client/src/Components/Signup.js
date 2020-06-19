@@ -9,10 +9,8 @@ export default function Signup() {
   const [confPassword, setConfPassword] = useState("password");
   const [err, setErr] = useState("");
 
-  const context = useContext(LoginContext); /////////// ffffffffiiiiiiiixxxxxxxxxxxxxxxx
-
   const handleSubmit = (e) => {
-    console.log(context);
+    // console.log(context);
     setErr("");
     e.preventDefault();
     const userCred = { handle: username, email, password, confPassword };
@@ -36,8 +34,8 @@ export default function Signup() {
   return (
     <>
       <LoginContext.Consumer>
-        {(value) => {
-          console.log(value);
+        {([isLoggedIn, setisLoggedIn]) => {
+          console.log(isLoggedIn);
           return (
             <main>
               <div className="text-xl"> </div>
@@ -61,7 +59,7 @@ export default function Signup() {
                               Sign Up
                             </h6>
                           </div>
-                          <div className="text-lg m-20">sdassdaasdasd</div>
+                          {/* <div className="text-lg m-20">sdassdaasdasd</div> */}
 
                           <hr className="mt-6 border-b-1 border-gray-400" />
                         </div>

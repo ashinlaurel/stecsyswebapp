@@ -38,7 +38,7 @@ export default function Order() {
   };
 
   return (
-    <div>
+    <div className="appbody h-full min-h-screen">
       <div className="h-full py-65 bg-gray-300 mx-3 md:mx-16 lg:mx-32  my-20 rounded-lg shadow-xl">
         <div className="mx-2 md:mx-24 text-center py-20">
           <span className="text-4xl  text-gray-800 block pb-8">ORDER NOW</span>

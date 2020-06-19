@@ -8,6 +8,7 @@ import Admin from "./Components/AdminPage/Admin";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import LoginContextProvider from "./Context/LoginContext";
+import Navbar from "./Components/Navbar";
 
 // Uncomment During Production-----------------------------------------------------------------------------------
 // axios.defaults.baseURL =
@@ -19,6 +20,7 @@ function App() {
   return (
     <div className="">
       <BrowserRouter>
+        <Navbar />
         <Route exact path="/">
           {" "}
           <Home />{" "}

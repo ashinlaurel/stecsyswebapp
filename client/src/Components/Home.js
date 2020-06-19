@@ -8,8 +8,6 @@ import Logo from "../assets/logo.svg";
 export default function Home() {
   return (
     <div>
-      <Navbar />
-
       <div className="appbody h-screen">
         <div className="flex justify-around items-center pt-24 ">
           <div className="flex flex-col h-full justify-center items-center">

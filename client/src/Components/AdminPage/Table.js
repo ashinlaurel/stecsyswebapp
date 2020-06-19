@@ -335,21 +335,21 @@ const TableData = () => {
                     <div className="text-sm px-6 mt-2 text-gray-600">
                       Created At :{modaldata.time} {modaldata.createdat}
                     </div>
-                    <div className="relative px-6 flex-auto">
+                    <div className="relative mt-4 px-6 flex-auto">
                       <div className="text-gray-600 text-lg leading-relaxed">
-                        Name:{modaldata.name}
+                        Name: {modaldata.name}
                       </div>
                       <div className="text-gray-600 text-lg leading-relaxed">
-                        Company Name:{modaldata.companyname}
+                        Company Name: {modaldata.companyname}
                       </div>
                       <div className="text-gray-600 text-lg leading-relaxed">
-                        Phone:{modaldata.phone}
+                        Phone: {modaldata.phone}
                       </div>
                       <div className="text-gray-600 text-lg leading-relaxed">
                         Email:{modaldata.email}
                       </div>
                       <p className=" text-gray-600 text-lg leading-relaxed">
-                        Order:{modaldata.orders}
+                        Order: {modaldata.orders}
                       </p>
                     </div>
                   </div>
