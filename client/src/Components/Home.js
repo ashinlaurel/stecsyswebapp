@@ -4,11 +4,13 @@ import LandingImg from "../assets/landingimage.png";
 import Navbar from "./Navbar";
 import "../css/mainpage.css";
 import Logo from "../assets/logo.svg";
+import AboutUs from "./Aboutus";
+import Footer from "./Footer";
 
 export default function Home() {
   return (
     <div>
-      <div className="appbody h-screen">
+      <div className="appbody h-full min-h-screen">
         <div className="flex flex-col sm:flex-row justify-around items-center pt-24 ">
           <div className="flex flex-col h-full justify-center items-center">
             <div className="">
@@ -36,6 +38,11 @@ export default function Home() {
             <img className="max-w-sm " src={LandingImg} />
           </div>
         </div>
+        <div className="flex items-center justify-center mt-40 ">
+          <AboutUs />
+        </div>
+        <div className="w-full h-20"></div>
+        <Footer />
       </div>
     </div>
   );
