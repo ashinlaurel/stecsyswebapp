@@ -19,30 +19,30 @@ axios.defaults.baseURL = "http://localhost:3001";
 function App() {
   return (
     <div className="">
-      <BrowserRouter>
-        <Navbar />
-        <Route exact path="/">
-          {" "}
-          <Home />{" "}
-        </Route>
-        <Route exact path="/order">
-          {" "}
-          <Order />{" "}
-        </Route>
-        <Route exact path="/admin">
-          {" "}
-          <Admin />{" "}
-        </Route>
-        <Route exact path="/login">
-          {" "}
-          <Login />{" "}
-        </Route>
-        <Route exact path="/signup">
-          <LoginContextProvider>
+      <LoginContextProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Route exact path="/">
+            {" "}
+            <Home />{" "}
+          </Route>
+          <Route exact path="/order">
+            {" "}
+            <Order />{" "}
+          </Route>
+          <Route exact path="/admin">
+            {" "}
+            <Admin />{" "}
+          </Route>
+          <Route exact path="/login">
+            {" "}
+            <Login />{" "}
+          </Route>
+          <Route exact path="/signup">
             <Signup />
-          </LoginContextProvider>
-        </Route>
-      </BrowserRouter>
+          </Route>
+        </BrowserRouter>
+      </LoginContextProvider>
     </div>
   );
 }

@@ -1,11 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Axios from "axios";
 import { LoginContext } from "../Context/LoginContext";
 
 export default function Login() {
-  const [email, setEmail] = useState("test@test.com");
+  const [email, setEmail] = useState("adminacc@stec.com");
   const [password, setPassword] = useState("password");
   const [err, setErr] = useState("");
+
+  const {
+    isLoggedIn,
+    setisLoggedIn,
+    handle,
+    setHandle,
+    userToken,
+    setUserToken,
+    Admin,
+    setAdmin,
+  } = useContext(LoginContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +27,11 @@ export default function Login() {
     };
     Axios.post("/login", userData)
       .then((res) => {
-        console.log(res.data);
+        let user = res.data;
+        setisLoggedIn(true);
+        setHandle(user.handle);
+        setAdmin(user.isAdmin);
+        // console.log(user);
         setEmail("");
         setPassword("");
       })
