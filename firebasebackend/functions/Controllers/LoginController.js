@@ -9,9 +9,10 @@ const loginController = {
       email: req.body.email,
       password: req.body.password,
       handle: req.body.handle,
+      isAdmin: req.body.isAdmin,
     };
     let getToken, userId;
-    db.doc(`/Users/${newUser.handle}`)
+    db.doc(`/Users/${newUser.email}`)
       .get()
       .then((doc) => {
         if (doc.exists) {
@@ -35,8 +36,9 @@ const loginController = {
           email: newUser.email,
           createdAt: new Date().toISOString(),
           userId: userId,
+          isAdmin: newUser.isAdmin,
         };
-        return db.doc(`/Users/${newUser.handle}`).set(userCred);
+        return db.doc(`/Users/${newUser.email}`).set(userCred);
       })
       .then(() => {
         console.log(getToken);
@@ -58,14 +60,14 @@ const loginController = {
       email: req.body.email,
       password: req.body.password,
     };
+    let token, uid;
     firebase
       .auth()
       .signInWithEmailAndPassword(user.email, user.password)
       .then((data) => {
-        return data.user.getIdToken();
-      })
-      .then((token) => {
-        return res.json({ token });
+        // console.log(data.user.uid);
+        uid = data.user.getIdToken();
+        token = data.user.getIdToken();
       })
       .catch((err) => {
         console.error(err);
@@ -75,6 +77,14 @@ const loginController = {
         else if (err.code === "auth/wrong-password")
           return res.status(400).json({ message: "Wrong Password" });
         return res.status(500).json({ error: err.code });
+      });
+    firebase
+      .firestore()
+      .collection("Users")
+      .doc(user.email)
+      .get()
+      .then((doc) => {
+        return res.status(200).json(doc.data());
       });
   },
 };
