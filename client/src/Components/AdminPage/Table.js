@@ -250,31 +250,50 @@ const TableData = () => {
                 </thead>
                 <tbody>
                   {order.map((doc) => (
-                    <tr
-                      key={doc.id}
-                      onClick={() => {
-                        Modalpop(doc);
-                      }}
-                      className="hover:bg-white cursor-pointer "
-                    >
+                    <tr key={doc.id} className="hover:bg-white cursor-pointer ">
                       <td className="border-b border-gray-300  px-4 py-2 text-sm">
                         <div>{doc.time}</div>
                         <div>{doc.createdat}</div>
                       </td>
 
-                      <td className="border-b border-gray-300 px-4 py-2 ">
+                      <td
+                        onClick={() => {
+                          Modalpop(doc);
+                        }}
+                        className="border-b border-gray-300 px-4 py-2 "
+                      >
                         {doc.name}
                       </td>
-                      <td className="border-b border-gray-300 px-4 py-2 ">
+                      <td
+                        onClick={() => {
+                          Modalpop(doc);
+                        }}
+                        className="border-b border-gray-300 px-4 py-2 "
+                      >
                         {doc.phone}
                       </td>
-                      <td className="border-b border-gray-300 px-4 py-2 ">
+                      <td
+                        onClick={() => {
+                          Modalpop(doc);
+                        }}
+                        className="border-b border-gray-300 px-4 py-2 "
+                      >
                         {doc.email}
                       </td>
-                      <td className="border-b border-gray-300 px-4 py-2 ">
+                      <td
+                        onClick={() => {
+                          Modalpop(doc);
+                        }}
+                        className="border-b border-gray-300 px-4 py-2 "
+                      >
                         {doc.companyname}
                       </td>
-                      <td className="border-b border-gray-300 px-4 py-2 ">
+                      <td
+                        onClick={() => {
+                          Modalpop(doc);
+                        }}
+                        className="border-b border-gray-300 px-4 py-2 "
+                      >
                         {doc.orders}
                       </td>
                       <td className="border-b border-gray-300 px-4 py-2 ">
@@ -295,7 +314,7 @@ const TableData = () => {
               </table>
               <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
                 <span class="text-xs xs:text-sm text-gray-900">
-                  Showing Entries
+                  Showing {order.length} Entries
                 </span>
                 <div class="inline-flex mt-2 xs:mt-0">
                   <button class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-l">
@@ -312,7 +331,7 @@ const TableData = () => {
         {showModal ? (
           <>
             <div
-              className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+              className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none "
               onClick={() => setShowModal(false)}
             >
               <div className="relative w-auto my-6 mx-auto max-w-sm">
@@ -331,7 +350,7 @@ const TableData = () => {
                     </button>
                   </div>
                   {/*body*/}
-                  <div>
+                  <div className="m-10">
                     <div className="text-sm px-6 mt-2 text-gray-600">
                       Created At :{modaldata.time} {modaldata.createdat}
                     </div>

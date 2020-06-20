@@ -27,26 +27,25 @@ export default function Order() {
     axios
       .post("/neworder", values)
       .then((response) => {
-        // console.log("Promise Working"); /// TODO---  Why not working??----
         setValues(theform);
         setShowModal(true);
       })
       .catch((err) => {
         console.log(err);
       });
-    // setValues(theform);
   };
 
   return (
     <div className="appbody h-full min-h-screen">
-      <div className="h-full py-65 bg-gray-300 mx-3 md:mx-16 lg:mx-32  my-20 rounded-lg shadow-xl">
-        <div className="mx-2 md:mx-24 text-center py-20">
+      <div className="w-full h-20"></div>
+      <div className="h-full py-65 bg-gray-300 bg-opacity-50 mx-4 md:mx-16 lg:mx-32 rounded-lg shadow-xl">
+        <div className="mx-2 text-center py-10 flex flex-col items-center justify-center  ">
           <span className="text-4xl  text-gray-800 block pb-8">ORDER NOW</span>
-          <form onSubmit={handleSubmit}>
-            <div className="md:flex md:items-center mb-6">
+          <form className="px-4 sm:px-20 w-full" onSubmit={handleSubmit}>
+            <div className="md:flex md:items-center mb-6  ">
               <div className="md:w-1/3">
                 <label
-                  className="block text-gray-800  md:text-right mb-1 md:mb-0 pr-4"
+                  className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
                   Name
@@ -69,7 +68,7 @@ export default function Order() {
             <div className="md:flex md:items-center mb-6">
               <div className="md:w-1/3">
                 <label
-                  className="block text-gray-800  md:text-right mb-1 md:mb-0 pr-4"
+                  className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
                   Email
@@ -92,7 +91,7 @@ export default function Order() {
             <div className="md:flex md:items-center mb-6">
               <div className="md:w-1/3">
                 <label
-                  className="block text-gray-800  md:text-right mb-1 md:mb-0 pr-4"
+                  className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
                   Company
@@ -115,7 +114,7 @@ export default function Order() {
             <div className="md:flex md:items-center mb-6">
               <div className="md:w-1/3">
                 <label
-                  className="block text-gray-800  md:text-right mb-1 md:mb-0 pr-4"
+                  className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
                   Mobile Number
@@ -138,10 +137,10 @@ export default function Order() {
             <div className="md:flex md:items-center mb-6">
               <div className="md:w-1/3">
                 <label
-                  className="block text-gray-800  md:text-right mb-1 md:mb-0 pr-4"
+                  className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
-                  Order
+                  Order/Enquiry
                 </label>
               </div>
               <div className="md:w-2/3">
