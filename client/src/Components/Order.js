@@ -94,7 +94,7 @@ export default function Order() {
                   className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
-                  Company
+                  Company Name
                 </label>
               </div>
               <div className="md:w-2/3">
@@ -126,10 +126,11 @@ export default function Order() {
                     rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none 
                     focus:bg-white focus:border-purple-500"
                   id="inline-full-name"
-                  type="text"
+                  type="number"
                   name="phone"
                   value={values.phone}
                   onChange={handleInput}
+                  required
                 />
               </div>
             </div>
@@ -148,11 +149,13 @@ export default function Order() {
                   className="bg-gray-200 appearance-none border-2 border-gray-200 
                     rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none 
                     focus:bg-white focus:border-purple-500"
+                  rows="5"
                   id="inline-full-name"
                   type="text"
                   name="orders"
                   value={values.orders}
                   onChange={handleInput}
+                  required
                 />
               </div>
             </div>

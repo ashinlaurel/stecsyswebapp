@@ -19,7 +19,7 @@ export default function AboutUs() {
                 <img
                   alt="..."
                   className="max-w-full rounded-lg shadow-lg"
-                  src="https://images.pexels.com/photos/2047914/pexels-photo-2047914.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                  src="https://images.pexels.com/photos/3184431/pexels-photo-3184431.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=650&w=940"
                 />
               </div>
               <div className="w-full md:w-5/12 mt-6 ml-auto mr-auto px-4">

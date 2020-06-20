@@ -4,6 +4,7 @@ import LandingImg from "../assets/landingimage.png";
 import Navbar from "./Navbar";
 import "../css/mainpage.css";
 import Logo from "../assets/logo.svg";
+import LogoGif from "../assets/logogif.gif";
 import AboutUs from "./Aboutus";
 import Footer from "./Footer";
 
@@ -35,7 +36,7 @@ export default function Home() {
             </div>
           </div>
           <div className="">
-            <img className="max-w-sm " src={LandingImg} />
+            <img className="max-w-sm " src={LogoGif} />
           </div>
         </div>
         <div className="flex items-center justify-center mt-40 ">
