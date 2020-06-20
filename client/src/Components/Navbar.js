@@ -17,15 +17,12 @@ const Navbar = () => {
     setAdmin(false);
   };
   return (
-    <div className="/">
-      <header class="border-b md:flex md:items-center md:justify-between p-4 pb-0 shadow-lg md:pb-4">
+    <div className="">
+      <header class=" navbg md:flex md:items-center md:justify-between p-10 pb-0 shadow-lg md:pb-4 ">
         {/* <!-- Logo text or image --> */}
         <div class="flex items-center justify-between mb-4 md:mb-0">
           <h1 class="leading-none text-2xl text-grey-darkest">
-            <Link
-              class="no-underline text-grey-darkest hover:text-black"
-              to="/"
-            >
+            <Link class="no-underline text-gray-100 " to="/">
               Stec Systems
             </Link>
           </h1>

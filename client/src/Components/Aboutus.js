@@ -3,7 +3,7 @@ import React from "react";
 export default function AboutUs() {
   return (
     <>
-      <div className="relative flex flex-col min-w-0 bg-white w-full mx-32 shadow-xl rounded-lg ">
+      <div className="relative flex flex-col min-w-0 bg-white w-full mx-6 sm:mx-32 shadow-xl rounded-lg ">
         <div className="px-6">
           <div className="text-center mt-12">
             <h3 className="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2">

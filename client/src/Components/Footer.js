@@ -11,7 +11,7 @@ export default function Footer() {
               <h5 className="text-lg mt-0 mb-2 text-black">
                 Find us on any of these platforms, we respond 1-2 business days.
               </h5>
-              <div className="mt-6">
+              <div className="my-6">
                 <button
                   className="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                   type="button"

@@ -11,15 +11,15 @@ export default function Home() {
   return (
     <div>
       <div className="appbody h-full min-h-screen">
-        <div className="flex flex-col sm:flex-row justify-around items-center pt-24 ">
+        <div className="flex flex-col sm:flex-row justify-around items-center pt-24 mx-5 sm:mx-0">
           <div className="flex flex-col h-full justify-center items-center">
-            <div className="">
+            <div className="mx-2">
               <img className="" src={Logo} height="75" width="75" />
             </div>
-            <div className="text-5xl sm:text-6xl text-gray-200 border-black leading-tight">
+            <div className="text-5xl text-center sm:text-6xl text-gray-200 border-black leading-none">
               Stec Systems
             </div>
-            <div className="text-xl sm:text-2xl text-gray-200 border-black">
+            <div className="text-base text-center sm:text-xl text-gray-200 border-black pt-1">
               Suppliers For All Your Computer Needs
             </div>
             <div className="text-left mt-6">

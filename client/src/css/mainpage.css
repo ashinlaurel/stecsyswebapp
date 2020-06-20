@@ -9,3 +9,7 @@
   background-image: url("../assets/overlay.png"),
     linear-gradient(#5f4d93 60%, #e37682 80%);
 }
+
+.navbg {
+  background-color: #5f4d93;
+}
