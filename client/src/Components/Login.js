@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
 import Axios from "axios";
 import { LoginContext } from "../Context/LoginContext";
+import { withRouter } from "react-router-dom";
 
-export default function Login() {
+function Login(props) {
   const [email, setEmail] = useState("adminacc@stec.com");
   const [password, setPassword] = useState("password");
   const [err, setErr] = useState("");
@@ -34,6 +35,7 @@ export default function Login() {
         // console.log(user);
         setEmail("");
         setPassword("");
+        props.history.push("/");
       })
       .catch((err) => {
         console.log(err.res);
@@ -136,3 +138,5 @@ export default function Login() {
     </>
   );
 }
+
+export default withRouter(Login);

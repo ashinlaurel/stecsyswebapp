@@ -2,8 +2,9 @@ import React, { useState, useContext } from "react";
 import { LoginContext } from "../Context/LoginContext";
 import Axios from "axios";
 import LoginPromptAdmin from "./LoginPromptAdmin";
+import { withRouter } from "react-router-dom";
 
-export default function Signup() {
+function Signup(props) {
   const [username, setUsername] = useState("front");
   const [email, setEmail] = useState("fron@end.com");
   const [password, setPassword] = useState("password");
@@ -48,6 +49,7 @@ export default function Signup() {
           setPassword("");
           setConfPassword("");
           setErr("Account Created");
+          props.history.push("/");
         })
         .catch((err) => {
           setErr(err.response.data.message);
@@ -195,3 +197,5 @@ export default function Signup() {
     </>
   );
 }
+
+export default withRouter(Signup);
