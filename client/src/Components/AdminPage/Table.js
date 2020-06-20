@@ -13,7 +13,7 @@ const TableData = () => {
   const [showModal, setShowModal] = useState(false);
   const [modaldata, setModalData] = useState([]);
   const [order, setOrder] = useState([]);
-  const [sortBy, setSortBy] = useState("DATE_ASC");
+  const [sortBy, setSortBy] = useState("NAME_ASC");
   const [refresh, setRefresh] = useState(false);
   const [searchinp, setSearchInp] = useState("");
   const [searchpass, setSearchPass] = useState("");
@@ -23,7 +23,8 @@ const TableData = () => {
   const [showAll, setShowAll] = useState("Show By Date");
 
   // useEffect(() => {
-  //   Sorter();
+  //   setSortBy("DATE_DESC");
+  //   return () => {};
   // }, []);
 
   const Modalpop = (doc) => {
@@ -48,7 +49,6 @@ const TableData = () => {
       .post("/togglestatus", { id: id, status: nextStat })
       .then(() => {
         setRefresh(!refresh);
-
         console.log("res");
       })
       .catch((err) => {
@@ -63,34 +63,29 @@ const TableData = () => {
   };
 
   const Sorter = () => {
-    console.log("sorter run");
     let neworder = order;
     let direction = SORT_OPTIONS[sortBy].direction;
     let column = SORT_OPTIONS[sortBy].column;
-    console.log(SORT_OPTIONS[sortBy].direction);
-    console.log(SORT_OPTIONS[sortBy].column);
-    if (neworder !== null) {
-      if (direction === "asc") {
-        neworder.sort((a, b) => {
-          if (a[column] < b[column]) {
-            return 1;
-          }
-          if (a[column] > b[column]) {
-            return -1;
-          }
-          return 0;
-        });
-      } else if (direction === "desc") {
-        neworder.sort((a, b) => {
-          if (a[column] < b[column]) {
-            return -1;
-          }
-          if (a[column] > b[column]) {
-            return 1;
-          }
-          return 0;
-        });
-      }
+    if (direction === "asc") {
+      neworder.sort((a, b) => {
+        if (a[column] < b[column]) {
+          return 1;
+        }
+        if (a[column] > b[column]) {
+          return -1;
+        }
+        return 0;
+      });
+    } else if (direction === "desc") {
+      neworder.sort((a, b) => {
+        if (a[column] < b[column]) {
+          return -1;
+        }
+        if (a[column] > b[column]) {
+          return 1;
+        }
+        return 0;
+      });
     }
 
     setOrder(neworder);
@@ -98,9 +93,7 @@ const TableData = () => {
 
   const onSortToggle = (e) => {
     setSortBy(e.currentTarget.value);
-
     Sorter();
-
     // console.log(neworder);
   };
 
