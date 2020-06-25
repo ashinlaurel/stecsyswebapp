@@ -4,10 +4,12 @@ import Calendar from "react-calendar";
 
 const TableData = () => {
   const SORT_OPTIONS = {
-    NAME_ASC: { column: "name", direction: "asc" },
-    NAME_DESC: { column: "name", direction: "desc" },
-    DATE_ASC: { column: "time", direction: "desc" },
-    DATE_DESC: { column: "time", direction: "asc" },
+    NAME_ASC: { column: "name_lower", direction: "asc" },
+    NAME_DESC: { column: "name_lower", direction: "desc" },
+    DATE_ASC: { column: "createdat", direction: "asc" },
+    DATE_DESC: { column: "createdat", direction: "desc" },
+    TIME_ASC: { column: "time", direction: "desc" },
+    TIME_DESC: { column: "time", direction: "asc" },
   };
 
   const [showModal, setShowModal] = useState(false);
@@ -21,11 +23,6 @@ const TableData = () => {
   const [datesel, setDateSel] = useState(todaydate);
   const [datedrop, setDateDrop] = useState(false);
   const [showAll, setShowAll] = useState("Show By Date");
-
-  // useEffect(() => {
-  //   setSortBy("DATE_DESC");
-  //   return () => {};
-  // }, []);
 
   const Modalpop = (doc) => {
     setModalData(doc);
@@ -62,9 +59,29 @@ const TableData = () => {
     setSearchPass(searchinp);
   };
 
+  let sortdetails = {
+    details: sortBy,
+    date: datesel.toDateString(),
+    search: searchpass,
+    showAll: showAll,
+  };
+  useEffect(() => {
+    console.log("useeffect rerun");
+    axios
+      .post("/output", sortdetails)
+      .then((res) => {
+        const neworder = res.data;
+        Sorter();
+        return setOrder(neworder);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [refresh, datesel, searchpass, showAll]);
+
   const Sorter = () => {
     let neworder = order;
-    // console.log(neworder);
+    console.log(neworder);
     // console.log(order);
 
     let direction = SORT_OPTIONS[sortBy].direction;
@@ -93,7 +110,10 @@ const TableData = () => {
       });
     }
 
-    setOrder(neworder);
+    return () => {
+      console.log("sorting finished");
+      setOrder(neworder);
+    };
   };
 
   const onSortToggle = (e) => {
@@ -106,25 +126,6 @@ const TableData = () => {
     Sorter();
     return () => {};
   }, [sortBy]);
-
-  let sortdetails = {
-    details: sortBy,
-    date: datesel.toDateString(),
-    search: searchpass,
-    showAll: showAll,
-  };
-  useEffect(() => {
-    console.log("useeffect rerun");
-    axios
-      .post("/output", sortdetails)
-      .then((res) => {
-        const neworder = res.data;
-        return setOrder(neworder);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [refresh, datesel, searchpass, showAll]);
 
   return (
     <body class="antialiased font-sans ">
@@ -170,6 +171,8 @@ const TableData = () => {
                 >
                   <option value="NAME_ASC">Name(A-Z)</option>
                   <option value="NAME_DESC">Name(Z-A)</option>
+                  <option value="TIME_ASC">Time(Latest)</option>
+                  <option value="TIME_DESC">Time(Oldest)</option>
                   <option value="DATE_ASC">Date(Latest)</option>
                   <option value="DATE_DESC">Date(Oldest)</option>
                 </select>
@@ -261,7 +264,12 @@ const TableData = () => {
                 <tbody>
                   {order.map((doc) => (
                     <tr key={doc.id} className="hover:bg-white cursor-pointer ">
-                      <td className="border-b border-gray-300  px-4 py-2 text-sm">
+                      <td
+                        onClick={() => {
+                          Modalpop(doc);
+                        }}
+                        className="border-b border-gray-300  px-4 py-2 text-sm"
+                      >
                         <div>{doc.time}</div>
                         <div>{doc.createdat}</div>
                       </td>

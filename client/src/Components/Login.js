@@ -35,7 +35,7 @@ function Login(props) {
         // console.log(user);
         setEmail("");
         setPassword("");
-        props.history.push("/");
+        props.history.push("/admin");
       })
       .catch((err) => {
         console.log(err.res);
