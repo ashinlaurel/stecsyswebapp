@@ -23,6 +23,9 @@ const TableData = () => {
   const [datesel, setDateSel] = useState(todaydate);
   const [datedrop, setDateDrop] = useState(false);
   const [showAll, setShowAll] = useState("Show By Date");
+  const [rangebool, setRangeBool] = useState(false);
+  let [dateone, setDateOne] = useState(todaydate);
+  let [datetwo, setDateTwo] = useState([]);
 
   const Modalpop = (doc) => {
     setModalData(doc);
@@ -61,25 +64,38 @@ const TableData = () => {
 
   let sortdetails = {
     details: sortBy,
-    date: datesel.toDateString(),
+    // date: datesel.toDateString(),
+    // date: datesel,
     search: searchpass,
     showAll: showAll,
   };
   useEffect(() => {
-    console.log("useeffect rerun");
-    axios
-      .post("/output", sortdetails)
-      .then((res) => {
-        const neworder = res.data;
-        setOrder(neworder);
+    // console.log(datesel.toDateString());
+    // dateone = datesel[0];
+    setDateOne(datesel[0]);
+    // datetwo = datesel[1];
+    setDateOne(datesel[1]);
+    dateone = new Date(dateone);
+    dateone = dateone.toDateString();
+    datetwo = new Date(datetwo);
+    datetwo = datetwo.toDateString();
 
-        return () => {
-          console.log("done");
-        };
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // console.log(datesel.toDateString());
+    console.log(dateone);
+    console.log(datetwo);
+    // console.log(datesel.toDateString());
+    // axios
+    //   .post("/output", sortdetails)
+    //   .then((res) => {
+    //     const neworder = res.data;
+    //     setOrder(neworder);
+    //     return () => {
+    //       console.log("done");
+    //     };
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }, [refresh, datesel, searchpass, showAll]);
 
   const Sorter = () => {
@@ -137,7 +153,13 @@ const TableData = () => {
               <h2 class="text-3xl leading-tight">Orders</h2>
             </div>
           </div>
-          <div>{showAll !== "ALL" ? datesel.toDateString() : "All Orders"}</div>
+          <div>
+            {rangebool
+              ? "Range Mode"
+              : showAll !== "ALL"
+              ? datesel.toDateString()
+              : "All Orders"}
+          </div>
           <div class="my-2 flex sm:flex-row flex-col  ">
             <div class="flex flex-row mb-1 sm:mb-0">
               {showAll !== "ALL" ? (
@@ -146,7 +168,7 @@ const TableData = () => {
                     onClick={dateselectbutton}
                     className="h-full rounded-l border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
                   >
-                    {datesel.toDateString()}
+                    {rangebool ? "Range Mode" : datesel.toDateString()}
                   </button>
                   <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg
@@ -162,8 +184,9 @@ const TableData = () => {
                     <div className=" z-50 w-64 absolute bg-gray-100  rounded-lg ">
                       <Calendar
                         onChange={onDateSelection}
-                        // selectRange="true"
+                        selectRange={rangebool}
                         value={datesel}
+                        allow
                         className="rounded-lg shadow-sm px-2 "
                       />
                     </div>
@@ -242,6 +265,20 @@ const TableData = () => {
                 >
                   <i className="fa fa-refresh"></i>{" "}
                   {showAll == "ALL" ? "Show By Date" : "Show All"}
+                </button>
+              </div>
+              <div>
+                <button
+                  className="bg-blue-500 text-white hover:bg-blue-700 font-bold uppercase text-sm sm:text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
+                  type="button"
+                  style={{ transition: "all .15s ease" }}
+                  onClick={() => {
+                    setDateSel(todaydate);
+                    rangebool ? setRangeBool(false) : setRangeBool(true);
+                  }}
+                >
+                  <i className="fa fa-refresh"></i>{" "}
+                  {rangebool ? "Range Mode:On" : "Range Mode:Off"}
                 </button>
               </div>
             </div>
