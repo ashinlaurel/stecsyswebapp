@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div>
       <div className="appbody h-full min-h-screen">
-        <div className="flex flex-col sm:flex-row justify-around items-center pt-24 mx-5 sm:mx-0">
+        <div className="flex flex-col sm:flex-row justify-around items-center pt-24 mx-5 sm:mx-0 overflow-hidden">
           <div className="flex flex-col h-full justify-center items-center">
             <div className="mx-2">
               <img className="" src={Logo} height="75" width="75" />
