@@ -39,7 +39,7 @@ const Navbar = () => {
         {/* <!-- Logo text or image --> */}
         <div class="flex items-center justify-between mb-2  md:mb-0">
           <h1 class="leading-none text-base sm:text-2xl text-grey-darkest">
-            <Link class="no-underline   " to="/">
+            <Link class="no-underline" to="/">
               Stec Systems
             </Link>
           </h1>
@@ -57,7 +57,7 @@ const Navbar = () => {
 
         {/* <!-- END Logo text or image --> */}
         {/* <!-- Global navigation --> */}
-        <nav className="hidden md:inline mt-5" id="drop">
+        <nav className="hidden md:inline " id="drop">
           <ul class="list-reset md:flex md:items-center font-bold uppercase ">
             <li class="md:ml-4">
               {isLoggedIn ? (
