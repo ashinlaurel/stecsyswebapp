@@ -129,16 +129,16 @@ const TableData = () => {
   }, [order, sortBy]);
 
   return (
-    <body class="antialiased font-sans ">
-      <div class="container mx-auto px-4 sm:px-8">
-        <div class="py-8">
+    <body class="antialiased font-sans">
+      <div class="container mx-auto px-2 sm:px-8 ">
+        <div class="py-8 ">
           <div className="flex justify-start items-center">
             <div>
               <h2 class="text-3xl leading-tight">Orders</h2>
             </div>
           </div>
           <div>{datesel.toDateString()}</div>
-          <div class="my-2 flex sm:flex-row flex-col">
+          <div class="my-2 flex sm:flex-row flex-col  ">
             <div class="flex flex-row mb-1 sm:mb-0">
               <div id="zdropdown" className="relative">
                 <button
@@ -210,54 +210,59 @@ const TableData = () => {
                 />
               </form>
             </div>
-            <button
-              className="ml-5 bg-blue-500 text-white hover:bg-blue-700 font-bold uppercase text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
-              type="button"
-              style={{ transition: "all .15s ease" }}
-              onClick={() => {
-                setRefresh(!refresh);
-                setSearchPass(searchinp);
-              }}
-            >
-              <i className="fa fa-refresh"></i> Refresh
-            </button>
-            <button
-              className="ml-5 bg-blue-500 text-white hover:bg-blue-700 font-bold uppercase text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
-              type="button"
-              style={{ transition: "all .15s ease" }}
-              onClick={() => {
-                showAll == "ALL" ? setShowAll("DATE") : setShowAll("ALL");
-              }}
-            >
-              <i className="fa fa-refresh"></i>{" "}
-              {showAll == "ALL" ? "Show By Date" : "Show All"}
-            </button>
+            <div className="flex items-center justify-center  sm:ml-10">
+              <div>
+                <button
+                  className=" bg-blue-500 text-white hover:bg-blue-700 font-bold uppercase text-sm sm:text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
+                  type="button"
+                  style={{ transition: "all .15s ease" }}
+                  onClick={() => {
+                    setRefresh(!refresh);
+                    setSearchPass(searchinp);
+                  }}
+                >
+                  <i className="fa fa-refresh"></i> Refresh
+                </button>
+              </div>
+              <div>
+                <button
+                  className="bg-blue-500 text-white hover:bg-blue-700 font-bold uppercase text-sm sm:text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
+                  type="button"
+                  style={{ transition: "all .15s ease" }}
+                  onClick={() => {
+                    showAll == "ALL" ? setShowAll("DATE") : setShowAll("ALL");
+                  }}
+                >
+                  <i className="fa fa-refresh"></i>{" "}
+                  {showAll == "ALL" ? "Show By Date" : "Show All"}
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+          <div class=" px-4 sm:px-8 py-4 overflow-x-auto">
             <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
               <table class="min-w-full leading-normal">
                 <thead>
                   <tr>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th class="px-2 py-3 sm:px-5 sm:py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Created At
                     </th>
-
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th class="px-2 py-3 sm:px-5 sm:py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Name
                     </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th class="px-2 py-3 sm:px-5 sm:py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Phone
                     </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th class="hidden sm:table-cell px-2 py-3 sm:px-5 sm:py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Email
                     </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th class="hidden sm:table-cell px-2 py-3 sm:px-5 sm:py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Company
                     </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th class="hidden sm:table-cell px-2 py-3 sm:px-5 sm:py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Order
                     </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                    <th class="hidden sm:table-cell px-2 py-3 sm:px-5 sm:py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Status
                     </th>
                   </tr>
@@ -269,7 +274,7 @@ const TableData = () => {
                         onClick={() => {
                           Modalpop(doc);
                         }}
-                        className="border-b border-gray-300  px-4 py-2 text-sm"
+                        className="border-b border-gray-300  px-4 py-2 text-xs sm:text-sm"
                       >
                         <div>{doc.time}</div>
                         <div>{doc.createdat}</div>
@@ -295,7 +300,7 @@ const TableData = () => {
                         onClick={() => {
                           Modalpop(doc);
                         }}
-                        className="border-b border-gray-300 px-4 py-2 "
+                        className="hidden sm:table-cell border-b border-gray-300 px-4 py-2 "
                       >
                         {doc.email}
                       </td>
@@ -303,7 +308,7 @@ const TableData = () => {
                         onClick={() => {
                           Modalpop(doc);
                         }}
-                        className="border-b border-gray-300 px-4 py-2 "
+                        className="hidden sm:table-cell border-b border-gray-300 px-4 py-2 "
                       >
                         {doc.companyname}
                       </td>
@@ -311,11 +316,11 @@ const TableData = () => {
                         onClick={() => {
                           Modalpop(doc);
                         }}
-                        className="border-b border-gray-300 px-4 py-2 "
+                        className="hidden sm:table-cell border-b border-gray-300 px-4 py-2 "
                       >
                         {doc.orders}
                       </td>
-                      <td className="border-b border-gray-300 px-4 py-2 ">
+                      <td className="hidden sm:table-cell border-b border-gray-300 px-4 py-2 ">
                         <span
                           onClick={() => toggleStatus(doc.id, doc.status)}
                           class="cursor-pointer relative inline-block px-3 py-1 font-semibold text-green-900  leading-tight"
@@ -335,14 +340,6 @@ const TableData = () => {
                 <span class="text-xs xs:text-sm text-gray-900">
                   Showing {order.length} Entries
                 </span>
-                <div class="inline-flex mt-2 xs:mt-0">
-                  <button class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-l">
-                    Prev
-                  </button>
-                  <button class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-r">
-                    Next
-                  </button>
-                </div>
               </div>
             </div>
           </div>

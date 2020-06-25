@@ -35,11 +35,11 @@ const Navbar = () => {
   };
   return (
     <div className="text-white ">
-      <header class=" navbg md:flex md:items-center md:justify-between p-6 pb-0 shadow-lg md:pb-4 ">
+      <header class=" navbg md:flex md:items-center md:justify-between p-6 pb-2 shadow-lg md:pb-4 ">
         {/* <!-- Logo text or image --> */}
-        <div class="flex items-center justify-between  md:mb-0">
-          <h1 class="leading-none text-2xl text-grey-darkest">
-            <Link class="no-underline text-gray-100 " to="/">
+        <div class="flex items-center justify-between mb-2  md:mb-0">
+          <h1 class="leading-none text-base sm:text-2xl text-grey-darkest">
+            <Link class="no-underline   " to="/">
               Stec Systems
             </Link>
           </h1>
