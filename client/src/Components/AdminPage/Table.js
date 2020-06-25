@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import Calendar from "react-calendar";
 
 const TableData = () => {
   const SORT_OPTIONS = {
-    NAME_ASC: { column: "name_lower", direction: "asc" },
-    NAME_DESC: { column: "name_lower", direction: "desc" },
+    NAME_ASC: { column: "name_lower", direction: "desc" },
+    NAME_DESC: { column: "name_lower", direction: "asc" },
     DATE_ASC: { column: "createdat", direction: "asc" },
     DATE_DESC: { column: "createdat", direction: "desc" },
-    TIME_ASC: { column: "time", direction: "desc" },
-    TIME_DESC: { column: "time", direction: "asc" },
+    TIME_ASC: { column: "time", direction: "asc" },
+    TIME_DESC: { column: "time", direction: "desc" },
   };
 
   const [showModal, setShowModal] = useState(false);
   const [modaldata, setModalData] = useState([]);
   const [order, setOrder] = useState([]);
-  const [sortBy, setSortBy] = useState("NAME_ASC");
+  const [sortBy, setSortBy] = useState("TIME_ASC");
   const [refresh, setRefresh] = useState(false);
   const [searchinp, setSearchInp] = useState("");
   const [searchpass, setSearchPass] = useState("");
@@ -71,8 +71,11 @@ const TableData = () => {
       .post("/output", sortdetails)
       .then((res) => {
         const neworder = res.data;
-        Sorter();
-        return setOrder(neworder);
+        setOrder(neworder);
+
+        return () => {
+          console.log("done");
+        };
       })
       .catch((err) => {
         console.log(err);
@@ -81,7 +84,7 @@ const TableData = () => {
 
   const Sorter = () => {
     let neworder = order;
-    console.log(neworder);
+    // console.log(neworder);
     // console.log(order);
 
     let direction = SORT_OPTIONS[sortBy].direction;
@@ -109,23 +112,21 @@ const TableData = () => {
         return 0;
       });
     }
+    // console.log(neworder);
+    setOrder(neworder);
 
     return () => {
-      console.log("sorting finished");
-      setOrder(neworder);
+      // console.log("sorting finished");
     };
   };
 
   const onSortToggle = (e) => {
     setSortBy(e.currentTarget.value);
-    // Sorter();
-    // console.log(neworder);
   };
 
-  useEffect(() => {
+  useMemo(() => {
     Sorter();
-    return () => {};
-  }, [sortBy]);
+  }, [order, sortBy]);
 
   return (
     <body class="antialiased font-sans ">
@@ -169,10 +170,10 @@ const TableData = () => {
                   value={sortBy}
                   onChange={onSortToggle}
                 >
-                  <option value="NAME_ASC">Name(A-Z)</option>
-                  <option value="NAME_DESC">Name(Z-A)</option>
                   <option value="TIME_ASC">Time(Latest)</option>
                   <option value="TIME_DESC">Time(Oldest)</option>
+                  <option value="NAME_ASC">Name(A-Z)</option>
+                  <option value="NAME_DESC">Name(Z-A)</option>
                   <option value="DATE_ASC">Date(Latest)</option>
                   <option value="DATE_DESC">Date(Oldest)</option>
                 </select>
