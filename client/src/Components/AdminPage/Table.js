@@ -113,18 +113,9 @@ const TableData = () => {
         return 0;
       });
     }
-    console.log(status);
+
     // console.log(neworder);
-    // console.log("hhaa");
-    if (status !== "all") {
-      neworder = neworder.filter((item) => {
-        console.log(item.status);
-        return item.status !== status;
-      });
-    }
-    console.log(neworder);
-    // console.log(neworder);
-    setOrder(neworder);
+    // setOrder(neworder);
 
     return () => {
       // console.log("sorting finished");
@@ -140,7 +131,7 @@ const TableData = () => {
 
   useMemo(() => {
     Sorter();
-  }, [order, sortBy, status]);
+  }, [order, sortBy]);
 
   return (
     <body class="antialiased font-sans">
@@ -311,7 +302,8 @@ const TableData = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {order.map((doc) => (
+                  { 
+                   order.filter(doc)=>(return doc.status == status).map((doc) => (
                     <tr key={doc.id} className="hover:bg-white cursor-pointer ">
                       <td
                         onClick={() => {
