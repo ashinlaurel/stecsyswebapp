@@ -122,7 +122,7 @@ const TableData = () => {
         return item.status !== status;
       });
     }
-    // console.log(neworder);
+    console.log(neworder);
     // console.log(neworder);
     setOrder(neworder);
 
@@ -429,6 +429,12 @@ const TableData = () => {
                       <p className=" text-gray-600 text-lg leading-relaxed">
                         Order: {modaldata.orders}
                       </p>
+                      <p className=" text-gray-600 text-lg leading-relaxed ">
+                        Status:{" "}
+                        <span className="bg-green-200 rounded-full py-2 px-3 font-bold text-green-800 uppercase text-sm">
+                          {modaldata.status}
+                        </span>
+                      </p>
                     </div>
                   </div>
                   {/*footer*/}
@@ -440,6 +446,17 @@ const TableData = () => {
                       onClick={() => setShowModal(false)}
                     >
                       Close
+                    </button>
+                    <button
+                      className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                      type="button"
+                      style={{ transition: "all .15s ease" }}
+                      onClick={() =>
+                        toggleStatus(modaldata.id, modaldata.status)
+                      }
+                    >
+                      Mark{" "}
+                      {modaldata.status == "active" ? "Completed" : "Active"}
                     </button>
                   </div>
                 </div>

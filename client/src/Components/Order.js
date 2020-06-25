@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import spinner from "../assets/spinner.gif";
 
 export default function Order() {
   const theform = {
@@ -12,6 +13,7 @@ export default function Order() {
 
   const [values, setValues] = useState(theform);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -24,14 +26,17 @@ export default function Order() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Submitted");
+    setLoading(true);
     axios
       .post("/neworder", values)
       .then((response) => {
         setValues(theform);
         setShowModal(true);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
   };
 
@@ -41,129 +46,136 @@ export default function Order() {
       <div className="h-full py-65 bg-gray-300 bg-opacity-50 mx-4 md:mx-16 lg:mx-32 rounded-lg shadow-xl">
         <div className="mx-2 text-center py-10 flex flex-col items-center justify-center  ">
           <span className="text-4xl  text-gray-800 block pb-8">ORDER NOW</span>
-          <form className="px-4 sm:px-20 w-full" onSubmit={handleSubmit}>
-            <div className="md:flex md:items-center mb-6  ">
-              <div className="md:w-1/3">
-                <label
-                  className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
-                  for="inline-full-name"
-                >
-                  Name
-                </label>
-              </div>
-              <div className="md:w-2/3">
-                <input
-                  className="bg-gray-200 appearance-none border-2 border-gray-200 
+
+          {loading ? (
+            <div>
+              <img src={spinner} className="max-w-sm" />
+            </div>
+          ) : (
+            <form className="px-4 sm:px-20 w-full" onSubmit={handleSubmit}>
+              <div className="md:flex md:items-center mb-6  ">
+                <div className="md:w-1/3">
+                  <label
+                    className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
+                    for="inline-full-name"
+                  >
+                    Name
+                  </label>
+                </div>
+                <div className="md:w-2/3">
+                  <input
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 
                     rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none 
                     focus:bg-white focus:border-purple-500"
-                  id="inline-full-Item"
-                  type="text"
-                  name="name"
-                  onChange={handleInput}
-                  value={values.name}
-                />
+                    id="inline-full-Item"
+                    type="text"
+                    name="name"
+                    onChange={handleInput}
+                    value={values.name}
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="md:flex md:items-center mb-6">
-              <div className="md:w-1/3">
-                <label
-                  className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
-                  for="inline-full-name"
-                >
-                  Email
-                </label>
-              </div>
-              <div className="md:w-2/3">
-                <input
-                  className="bg-gray-200 appearance-none border-2 border-gray-200 
+              <div className="md:flex md:items-center mb-6">
+                <div className="md:w-1/3">
+                  <label
+                    className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
+                    for="inline-full-name"
+                  >
+                    Email
+                  </label>
+                </div>
+                <div className="md:w-2/3">
+                  <input
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 
                     rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none 
                     focus:bg-white focus:border-purple-500"
-                  id="inline-full-name"
-                  type="email"
-                  name="email"
-                  value={values.email}
-                  onChange={handleInput}
-                />
+                    id="inline-full-name"
+                    type="email"
+                    name="email"
+                    value={values.email}
+                    onChange={handleInput}
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="md:flex md:items-center mb-6">
-              <div className="md:w-1/3">
-                <label
-                  className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
-                  for="inline-full-name"
-                >
-                  Company Name
-                </label>
-              </div>
-              <div className="md:w-2/3">
-                <input
-                  className="bg-gray-200 appearance-none border-2 border-gray-200 
+              <div className="md:flex md:items-center mb-6">
+                <div className="md:w-1/3">
+                  <label
+                    className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
+                    for="inline-full-name"
+                  >
+                    Company Name
+                  </label>
+                </div>
+                <div className="md:w-2/3">
+                  <input
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 
                     rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none 
                     focus:bg-white focus:border-purple-500"
-                  id="inline-full-name"
-                  type="text"
-                  name="companyname"
-                  value={values.companyname}
-                  onChange={handleInput}
-                />
+                    id="inline-full-name"
+                    type="text"
+                    name="companyname"
+                    value={values.companyname}
+                    onChange={handleInput}
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="md:flex md:items-center mb-6">
-              <div className="md:w-1/3">
-                <label
-                  className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
-                  for="inline-full-name"
-                >
-                  Mobile Number
-                </label>
-              </div>
-              <div className="md:w-2/3">
-                <input
-                  className="bg-gray-200 appearance-none border-2 border-gray-200 
+              <div className="md:flex md:items-center mb-6">
+                <div className="md:w-1/3">
+                  <label
+                    className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
+                    for="inline-full-name"
+                  >
+                    Mobile Number
+                  </label>
+                </div>
+                <div className="md:w-2/3">
+                  <input
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 
                     rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none 
                     focus:bg-white focus:border-purple-500"
-                  id="inline-full-name"
-                  type="number"
-                  name="phone"
-                  value={values.phone}
-                  onChange={handleInput}
-                  required
-                />
+                    id="inline-full-name"
+                    type="number"
+                    name="phone"
+                    value={values.phone}
+                    onChange={handleInput}
+                    required
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="md:flex md:items-center mb-6">
-              <div className="md:w-1/3">
-                <label
-                  className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
-                  for="inline-full-name"
-                >
-                  Order/Enquiry
-                </label>
-              </div>
-              <div className="md:w-2/3">
-                <textarea
-                  className="bg-gray-200 appearance-none border-2 border-gray-200 
+              <div className="md:flex md:items-center mb-6">
+                <div className="md:w-1/3">
+                  <label
+                    className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
+                    for="inline-full-name"
+                  >
+                    Order/Enquiry
+                  </label>
+                </div>
+                <div className="md:w-2/3">
+                  <textarea
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 
                     rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none 
                     focus:bg-white focus:border-purple-500"
-                  rows="5"
-                  id="inline-full-name"
-                  type="text"
-                  name="orders"
-                  value={values.orders}
-                  onChange={handleInput}
-                  required
-                />
+                    rows="5"
+                    id="inline-full-name"
+                    type="text"
+                    name="orders"
+                    value={values.orders}
+                    onChange={handleInput}
+                    required
+                  />
+                </div>
               </div>
-            </div>
 
-            <button className="py-2 px-6 m-2 rounded-full bg-blue-500 text-white shadow-lg outline-none">
-              Order
-            </button>
-          </form>
+              <button className="py-2 px-6 m-2 rounded-full bg-blue-500 text-white shadow-lg outline-none">
+                Order
+              </button>
+            </form>
+          )}
         </div>
         {showModal ? (
           <>
