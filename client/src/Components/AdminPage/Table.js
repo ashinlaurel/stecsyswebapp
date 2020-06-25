@@ -23,6 +23,7 @@ const TableData = () => {
   const [datesel, setDateSel] = useState(todaydate);
   const [datedrop, setDateDrop] = useState(false);
   const [showAll, setShowAll] = useState("Show By Date");
+  const [status, setStatus] = useState("all");
 
   const Modalpop = (doc) => {
     setModalData(doc);
@@ -89,8 +90,8 @@ const TableData = () => {
 
     let direction = SORT_OPTIONS[sortBy].direction;
     let column = SORT_OPTIONS[sortBy].column;
-    console.log(direction);
-    console.log(column);
+    // console.log(direction);
+    // console.log(column);
     if (direction === "asc") {
       neworder.sort((a, b) => {
         if (a[column] < b[column]) {
@@ -112,6 +113,16 @@ const TableData = () => {
         return 0;
       });
     }
+    console.log(status);
+    // console.log(neworder);
+    // console.log("hhaa");
+    if (status !== "all") {
+      neworder = neworder.filter((item) => {
+        console.log(item.status);
+        return item.status !== status;
+      });
+    }
+    // console.log(neworder);
     // console.log(neworder);
     setOrder(neworder);
 
@@ -123,10 +134,13 @@ const TableData = () => {
   const onSortToggle = (e) => {
     setSortBy(e.currentTarget.value);
   };
+  const onStatusToggle = (e) => {
+    setStatus(e.currentTarget.value);
+  };
 
   useMemo(() => {
     Sorter();
-  }, [order, sortBy]);
+  }, [order, sortBy, status]);
 
   return (
     <body class="antialiased font-sans">
@@ -184,6 +198,28 @@ const TableData = () => {
                   <option value="DATE_ASC">Date(Latest)</option>
                   <option value="DATE_DESC">Date(Oldest)</option>
                 </select>
+
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg
+                    class="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="relative">
+                <select
+                  class="appearance-none h-full rounded-r border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none   focus:bg-white focus:border-gray-500"
+                  value={status}
+                  onChange={onStatusToggle}
+                >
+                  <option value="all">All</option>
+                  <option value="active">Active</option>
+                  <option value="completed">Completed</option>
+                </select>
+
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
                     class="fill-current h-4 w-4"

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { LoginContext } from "../Context/LoginContext";
 import menu from "../assets/menu.png";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const {
     isLoggedIn,
     setisLoggedIn,
@@ -16,6 +16,7 @@ const Navbar = () => {
     setisLoggedIn(false);
     setHandle("");
     setAdmin(false);
+    closeDrop();
   };
   const openDrop = () => {
     const drop = document.querySelector("#drop");
@@ -62,6 +63,7 @@ const Navbar = () => {
             <li class="md:ml-4">
               {isLoggedIn ? (
                 <Link
+                  onClick={() => closeDrop()}
                   class="block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0"
                   to="/admin"
                 >
@@ -71,6 +73,7 @@ const Navbar = () => {
             </li>
             <li class="md:ml-4">
               <Link
+                onClick={() => closeDrop()}
                 class="border-t block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0"
                 to="/order"
               >
@@ -79,6 +82,7 @@ const Navbar = () => {
             </li>
             <li class="md:ml-4">
               <Link
+                onClick={() => closeDrop()}
                 to="/login"
                 class="border-t block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0"
               >
@@ -87,13 +91,14 @@ const Navbar = () => {
             </li>
             {isLoggedIn ? (
               <li class="md:ml-4">
-                <div
+                <Link
+                  to="/"
                   class="border-t block no-underline hover:underline py-2 
                 text-grey-darkest hover:text-black md:border-none md:p-0"
                   onClick={Logout}
                 >
                   Logout
-                </div>
+                </Link>
               </li>
             ) : (
               <p></p>
