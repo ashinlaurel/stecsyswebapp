@@ -64,8 +64,13 @@ const TableData = () => {
 
   const Sorter = () => {
     let neworder = order;
+    // console.log(neworder);
+    // console.log(order);
+
     let direction = SORT_OPTIONS[sortBy].direction;
     let column = SORT_OPTIONS[sortBy].column;
+    console.log(direction);
+    console.log(column);
     if (direction === "asc") {
       neworder.sort((a, b) => {
         if (a[column] < b[column]) {
@@ -93,9 +98,14 @@ const TableData = () => {
 
   const onSortToggle = (e) => {
     setSortBy(e.currentTarget.value);
-    Sorter();
+    // Sorter();
     // console.log(neworder);
   };
+
+  useEffect(() => {
+    Sorter();
+    return () => {};
+  }, [sortBy]);
 
   let sortdetails = {
     details: sortBy,
@@ -109,7 +119,7 @@ const TableData = () => {
       .post("/output", sortdetails)
       .then((res) => {
         const neworder = res.data;
-        setOrder(neworder);
+        return setOrder(neworder);
       })
       .catch((err) => {
         console.log(err);
