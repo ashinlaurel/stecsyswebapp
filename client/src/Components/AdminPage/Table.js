@@ -116,12 +116,7 @@ const TableData = () => {
     console.log(status);
     // console.log(neworder);
     // console.log("hhaa");
-    if (status !== "all") {
-      neworder = neworder.filter((item) => {
-        console.log(item.status);
-        return item.status !== status;
-      });
-    }
+
     console.log(neworder);
     // console.log(neworder);
     setOrder(neworder);
@@ -136,11 +131,27 @@ const TableData = () => {
   };
   const onStatusToggle = (e) => {
     setStatus(e.currentTarget.value);
+    // setRefresh(!refresh);
   };
 
   useMemo(() => {
     Sorter();
-  }, [order, sortBy, status]);
+    // if (status !== "all") {
+    // let neword = order.filter((item) => {
+    //   console.log(item.status);
+    //   return item.status === status;
+    // });
+    // if (order !== neword) setOrder(neword);
+    // }
+  }, [order, sortBy]);
+  // useMemo(() => {
+  //   setOrder(
+  //     order.filter((item) => {
+  //       console.log(item.status);
+  //       return item.status === status;
+  //     })
+  //   );
+  // }, [status]);
 
   return (
     <body class="antialiased font-sans">
@@ -311,72 +322,79 @@ const TableData = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {order.map((doc) => (
-                    <tr key={doc.id} className="hover:bg-white cursor-pointer ">
-                      <td
-                        onClick={() => {
-                          Modalpop(doc);
-                        }}
-                        className="border-b border-gray-300  px-4 py-2 text-xs sm:text-sm"
+                  {order
+                    .filter((doc) => {
+                      return doc.status === status || status === "all";
+                    })
+                    .map((doc) => (
+                      <tr
+                        key={doc.id}
+                        className="hover:bg-white cursor-pointer "
                       >
-                        <div>{doc.time}</div>
-                        <div>{doc.createdat}</div>
-                      </td>
-
-                      <td
-                        onClick={() => {
-                          Modalpop(doc);
-                        }}
-                        className="border-b border-gray-300 px-4 py-2 "
-                      >
-                        {doc.name}
-                      </td>
-                      <td
-                        onClick={() => {
-                          Modalpop(doc);
-                        }}
-                        className="border-b border-gray-300 px-4 py-2 "
-                      >
-                        {doc.phone}
-                      </td>
-                      <td
-                        onClick={() => {
-                          Modalpop(doc);
-                        }}
-                        className="hidden sm:table-cell border-b border-gray-300 px-4 py-2 "
-                      >
-                        {doc.email}
-                      </td>
-                      <td
-                        onClick={() => {
-                          Modalpop(doc);
-                        }}
-                        className="hidden sm:table-cell border-b border-gray-300 px-4 py-2 "
-                      >
-                        {doc.companyname}
-                      </td>
-                      <td
-                        onClick={() => {
-                          Modalpop(doc);
-                        }}
-                        className="hidden sm:table-cell border-b border-gray-300 px-4 py-2 "
-                      >
-                        {doc.orders}
-                      </td>
-                      <td className="hidden sm:table-cell border-b border-gray-300 px-4 py-2 ">
-                        <span
-                          onClick={() => toggleStatus(doc.id, doc.status)}
-                          class="cursor-pointer relative inline-block px-3 py-1 font-semibold text-green-900  leading-tight"
+                        <td
+                          onClick={() => {
+                            Modalpop(doc);
+                          }}
+                          className="border-b border-gray-300  px-4 py-2 text-xs sm:text-sm"
                         >
+                          <div>{doc.time}</div>
+                          <div>{doc.createdat}</div>
+                        </td>
+
+                        <td
+                          onClick={() => {
+                            Modalpop(doc);
+                          }}
+                          className="border-b border-gray-300 px-4 py-2 "
+                        >
+                          {doc.name}
+                        </td>
+                        <td
+                          onClick={() => {
+                            Modalpop(doc);
+                          }}
+                          className="border-b border-gray-300 px-4 py-2 "
+                        >
+                          {doc.phone}
+                        </td>
+                        <td
+                          onClick={() => {
+                            Modalpop(doc);
+                          }}
+                          className="hidden sm:table-cell border-b border-gray-300 px-4 py-2 "
+                        >
+                          {doc.email}
+                        </td>
+                        <td
+                          onClick={() => {
+                            Modalpop(doc);
+                          }}
+                          className="hidden sm:table-cell border-b border-gray-300 px-4 py-2 "
+                        >
+                          {doc.companyname}
+                        </td>
+                        <td
+                          onClick={() => {
+                            Modalpop(doc);
+                          }}
+                          className="hidden sm:table-cell border-b border-gray-300 px-4 py-2 "
+                        >
+                          {doc.orders}
+                        </td>
+                        <td className="hidden sm:table-cell border-b border-gray-300 px-4 py-2 ">
                           <span
-                            aria-hidden
-                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full "
-                          ></span>
-                          <span class="relative">{doc.status}</span>
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
+                            onClick={() => toggleStatus(doc.id, doc.status)}
+                            class="cursor-pointer relative inline-block px-3 py-1 font-semibold text-green-900  leading-tight"
+                          >
+                            <span
+                              aria-hidden
+                              class="absolute inset-0 bg-green-200 opacity-50 rounded-full "
+                            ></span>
+                            <span class="relative">{doc.status}</span>
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
               <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
