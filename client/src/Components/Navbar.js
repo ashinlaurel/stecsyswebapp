@@ -52,7 +52,7 @@ const Navbar = (props) => {
             <img className="fill-current" src={menu} height="20" width="30" />
           </div>
           <div class="hidden cursor-pointer" onClick={closeDrop} id="close">
-            X
+            <span className="md:hidden">X</span>
           </div>
         </div>
 
