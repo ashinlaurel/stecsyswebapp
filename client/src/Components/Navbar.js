@@ -40,7 +40,7 @@ const Navbar = (props) => {
         {/* <!-- Logo text or image --> */}
         <div class="flex items-center justify-between mb-2  md:mb-0">
           <h1 class="leading-none text-base sm:text-2xl text-grey-darkest">
-            <Link class="no-underline" to="/">
+            <Link class="no-underline hover:text-white" to="/">
               Stec Systems
             </Link>
           </h1>
@@ -59,12 +59,12 @@ const Navbar = (props) => {
         {/* <!-- END Logo text or image --> */}
         {/* <!-- Global navigation --> */}
         <nav className="hidden md:inline " id="drop">
-          <ul class="list-reset md:flex md:items-center font-bold uppercase ">
+          <ul class="list-reset md:flex md:items-center font-bold uppercase  ">
             <li class="md:ml-4">
               {isLoggedIn ? (
                 <Link
                   onClick={() => closeDrop()}
-                  class="block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0"
+                  class="block no-underline py-2 text-grey-darkest  md:border-none md:p-0"
                   to="/admin"
                 >
                   Dashboard
@@ -74,7 +74,7 @@ const Navbar = (props) => {
             <li class="md:ml-4">
               <Link
                 onClick={() => closeDrop()}
-                class="border-t block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0"
+                class="border-t block no-underline py-2 text-grey-darkest  md:border-none md:p-0"
                 to="/order"
               >
                 Order
@@ -84,7 +84,7 @@ const Navbar = (props) => {
               <Link
                 onClick={() => closeDrop()}
                 to="/login"
-                class="border-t block no-underline hover:underline py-2 text-grey-darkest hover:text-black md:border-none md:p-0"
+                class="border-t block no-underline py-2 text-grey-darkest  md:border-none md:p-0"
               >
                 {isLoggedIn ? <p>Hi,{handle}</p> : <p>Login</p>}
               </Link>
@@ -93,8 +93,8 @@ const Navbar = (props) => {
               <li class="md:ml-4">
                 <Link
                   to="/"
-                  class="border-t block no-underline hover:underline py-2 
-                text-grey-darkest hover:text-black md:border-none md:p-0"
+                  class="border-t block no-underline  py-2 
+                text-grey-darkest md:border-none md:p-0"
                   onClick={Logout}
                 >
                   Logout
