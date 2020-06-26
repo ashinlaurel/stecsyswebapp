@@ -49,7 +49,7 @@ export default function Order() {
 
           {loading ? (
             <div>
-              <img src={spinner} className="max-w-sm" />
+              <img src={spinner} className="w-20" />
             </div>
           ) : (
             <form className="px-4 sm:px-20 w-full" onSubmit={handleSubmit}>

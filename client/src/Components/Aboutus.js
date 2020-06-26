@@ -1,4 +1,5 @@
 import React from "react";
+import googlebadge from "../assets/playbadge.png";
 
 export default function AboutUs() {
   return (
@@ -10,7 +11,7 @@ export default function AboutUs() {
               What We Do
             </h3>
             <div className="text-sm leading-normal mb-2 text-gray-500 font-bold uppercase">
-              -Since 1986
+              -Since 1996
             </div>
           </div>
           <div className="py-10 border-t border-gray-300 text-center">
@@ -36,48 +37,20 @@ export default function AboutUs() {
                     place. You can use our hassle free website or app to place
                     orders.
                   </p>
-                  <ul className="list-none mt-6">
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
-                            <i className="fa fa-fingerprint"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">
-                            Carefully crafted components
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
-                            <i className="fab fa-html5"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">
-                            Amazing page examples
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-pink-600 bg-pink-200 mr-3">
-                            <i className="far fa-paper-plane"></i>
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="text-gray-600">Dynamic components</h4>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
+                  <div className="flex items-center justify-center mt-5">
+                    <div className="w-1/2">
+                      <button
+                        class="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
+                        type="button"
+                        // style={{"transition: all .15s ease"}}
+                      >
+                        Small
+                      </button>
+                    </div>
+                    <div className="w-1/2">
+                      <img src={googlebadge}></img>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
