@@ -113,15 +113,11 @@ const TableData = () => {
         return 0;
       });
     }
-<<<<<<< HEAD
-
-=======
     console.log(status);
     // console.log(neworder);
     // console.log("hhaa");
 
     console.log(neworder);
->>>>>>> 51ffbd9098b566fe6bf087094fac6b9dddeb5c89
     // console.log(neworder);
     // setOrder(neworder);
 
@@ -140,9 +136,6 @@ const TableData = () => {
 
   useMemo(() => {
     Sorter();
-<<<<<<< HEAD
-  }, [order, sortBy]);
-=======
     // if (status !== "all") {
     // let neword = order.filter((item) => {
     //   console.log(item.status);
@@ -159,7 +152,6 @@ const TableData = () => {
   //     })
   //   );
   // }, [status]);
->>>>>>> 51ffbd9098b566fe6bf087094fac6b9dddeb5c89
 
   return (
     <body class="antialiased font-sans">
@@ -272,7 +264,7 @@ const TableData = () => {
                 />
               </form>
             </div>
-            <div className="flex items-center justify-center  sm:ml-10">
+            <div className="flex mt-5 sm:mt-0 items-center justify-center sm:ml-10">
               <div>
                 <button
                   className=" bg-blue-500 text-white hover:bg-blue-700 font-bold uppercase text-sm sm:text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
@@ -286,6 +278,7 @@ const TableData = () => {
                   <i className="fa fa-refresh"></i> Refresh
                 </button>
               </div>
+              <div className="w-10"></div>
               <div>
                 <button
                   className="bg-blue-500 text-white hover:bg-blue-700 font-bold uppercase text-sm sm:text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
@@ -330,16 +323,6 @@ const TableData = () => {
                   </tr>
                 </thead>
                 <tbody>
-<<<<<<< HEAD
-                  { 
-                   order.filter(doc)=>(return doc.status == status).map((doc) => (
-                    <tr key={doc.id} className="hover:bg-white cursor-pointer ">
-                      <td
-                        onClick={() => {
-                          Modalpop(doc);
-                        }}
-                        className="border-b border-gray-300  px-4 py-2 text-xs sm:text-sm"
-=======
                   {order
                     .filter((doc) => {
                       return doc.status === status || status === "all";
@@ -348,7 +331,6 @@ const TableData = () => {
                       <tr
                         key={doc.id}
                         className="hover:bg-white cursor-pointer "
->>>>>>> 51ffbd9098b566fe6bf087094fac6b9dddeb5c89
                       >
                         <td
                           onClick={() => {

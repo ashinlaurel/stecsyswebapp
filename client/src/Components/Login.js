@@ -50,7 +50,7 @@ function Login(props) {
             <main>
               <section className="absolute w-full h-full">
                 <div
-                  className="absolute top-0 w-full h-full bg-gray-900"
+                  className="absolute top-0 w-full h-full bg-gray-100"
                   // style={{
                   //   backgroundImage:
                   //     // "url(" + require("assets/img/register_bg_2.png") + ")",
