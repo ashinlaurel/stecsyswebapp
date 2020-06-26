@@ -119,7 +119,7 @@ const TableData = () => {
 
     console.log(neworder);
     // console.log(neworder);
-    setOrder(neworder);
+    // setOrder(neworder);
 
     return () => {
       // console.log("sorting finished");
@@ -264,7 +264,7 @@ const TableData = () => {
                 />
               </form>
             </div>
-            <div className="flex items-center justify-center  sm:ml-10">
+            <div className="flex mt-5 sm:mt-0 items-center justify-center sm:ml-10">
               <div>
                 <button
                   className=" bg-blue-500 text-white hover:bg-blue-700 font-bold uppercase text-sm sm:text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
@@ -278,6 +278,7 @@ const TableData = () => {
                   <i className="fa fa-refresh"></i> Refresh
                 </button>
               </div>
+              <div className="w-10"></div>
               <div>
                 <button
                   className="bg-blue-500 text-white hover:bg-blue-700 font-bold uppercase text-sm sm:text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
