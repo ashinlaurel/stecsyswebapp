@@ -61,6 +61,15 @@ const Navbar = (props) => {
         <nav className="hidden md:inline " id="drop">
           <ul class="list-reset md:flex md:items-center font-bold uppercase  ">
             <li class="md:ml-4">
+              <Link
+                onClick={() => closeDrop()}
+                class="block no-underline py-2 text-grey-darkest  md:border-none md:p-0"
+                to="/"
+              >
+                Home
+              </Link>
+            </li>
+            <li class="md:ml-4">
               {isLoggedIn ? (
                 <Link
                   onClick={() => closeDrop()}
