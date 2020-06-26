@@ -3,6 +3,7 @@ import { LoginContext } from "../Context/LoginContext";
 import Axios from "axios";
 import LoginPromptAdmin from "./LoginPromptAdmin";
 import { withRouter } from "react-router-dom";
+import spinner from "../assets/spinner3.gif";
 
 function Signup(props) {
   const [username, setUsername] = useState("front");
@@ -11,6 +12,7 @@ function Signup(props) {
   const [confPassword, setConfPassword] = useState("password");
   const [err, setErr] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setloading] = useState(false);
 
   const {
     isLoggedIn,
@@ -26,6 +28,7 @@ function Signup(props) {
   const handleSubmit = (e) => {
     // console.log(context);
     console.log(isLoggedIn);
+    setloading(true);
     setErr("");
     e.preventDefault();
     const userCred = {
@@ -49,9 +52,11 @@ function Signup(props) {
           setPassword("");
           setConfPassword("");
           setErr("Account Created");
+          setloading(false);
           props.history.push("/");
         })
         .catch((err) => {
+          setloading(false);
           setErr(err.response.data.message);
         });
     }
@@ -62,11 +67,11 @@ function Signup(props) {
 
   return (
     <>
-      {isLoggedIn && isAdmin ? (
+      {isLoggedIn && Admin ? (
         <main>
           <div className="text-xl"> </div>
           <section className="absolute w-full h-full">
-            <div className="absolute top-0 w-full h-full bg-gray-900"></div>
+            <div className="absolute top-0 w-full h-full bg-gray-100"></div>
             <div className="container mx-auto px-4 h-full">
               <div className="flex content-center items-center justify-center h-full">
                 <div className="w-full lg:w-4/12 px-4">
@@ -77,7 +82,6 @@ function Signup(props) {
                           Sign Up
                         </h6>
                       </div>
-                      {/* <div className="text-lg m-20">sdassdaasdasd</div> */}
 
                       <hr className="mt-6 border-b-1 border-gray-400" />
                     </div>
@@ -188,6 +192,27 @@ function Signup(props) {
               </div>
             </div>
           </section>
+          {loading ? (
+            <>
+              <div
+                className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                // onClick={() => setShowModal(false)}
+              >
+                <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                  {/*content*/}
+                  <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                    {/*header*/}
+
+                    {/*body*/}
+                    <div className="relative p-6 flex-auto">
+                      <img src={spinner} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+            </>
+          ) : null}
         </main>
       ) : (
         <div>

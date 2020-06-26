@@ -6,7 +6,6 @@ import Login from "../Login";
 import LoginPrompt from "../LoginPrompt";
 const Admin = () => {
   const { isLoggedIn } = useContext(LoginContext);
-  // console.log(isLoggedIn, "liggg");
   return (
     <div className="bg-white h-full min-h-screen">
       {!isLoggedIn ? <LoginPrompt /> : <TableData />}

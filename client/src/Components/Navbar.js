@@ -52,7 +52,7 @@ const Navbar = (props) => {
             <img className="fill-current" src={menu} height="20" width="30" />
           </div>
           <div class="hidden cursor-pointer" onClick={closeDrop} id="close">
-            X
+            <span className="md:hidden">X</span>
           </div>
         </div>
 
@@ -60,6 +60,15 @@ const Navbar = (props) => {
         {/* <!-- Global navigation --> */}
         <nav className="hidden md:inline " id="drop">
           <ul class="list-reset md:flex md:items-center font-bold uppercase  ">
+            <li class="md:ml-4">
+              <Link
+                onClick={() => closeDrop()}
+                class="block no-underline py-2 text-grey-darkest  md:border-none md:p-0"
+                to="/"
+              >
+                Home
+              </Link>
+            </li>
             <li class="md:ml-4">
               {isLoggedIn ? (
                 <Link
@@ -89,6 +98,20 @@ const Navbar = (props) => {
                 {isLoggedIn ? <p>Hi,{handle}</p> : <p>Login</p>}
               </Link>
             </li>
+            {isLoggedIn ? (
+              <li class="md:ml-4">
+                <Link
+                  onClick={() => closeDrop()}
+                  to="/signup"
+                  class="border-t block no-underline  py-2 
+                text-grey-darkest md:border-none md:p-0"
+                >
+                  Create Users
+                </Link>
+              </li>
+            ) : (
+              <p></p>
+            )}
             {isLoggedIn ? (
               <li class="md:ml-4">
                 <Link

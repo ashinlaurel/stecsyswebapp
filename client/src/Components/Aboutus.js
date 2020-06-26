@@ -1,5 +1,6 @@
 import React from "react";
 import googlebadge from "../assets/playbadge.png";
+import { Link } from "react-router-dom";
 
 export default function AboutUs() {
   return (
@@ -38,17 +39,29 @@ export default function AboutUs() {
                     orders.
                   </p>
                   <div className="flex items-center justify-center mt-5">
-                    <div className="w-1/2">
-                      <button
-                        class="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
-                        type="button"
-                        // style={{"transition: all .15s ease"}}
-                      >
-                        Small
-                      </button>
+                    <div className="px-1">
+                      <Link to="/order">
+                        <button
+                          class="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
+                          type="button"
+                          href
+                          // style={{"transition: all .15s ease"}}
+                        >
+                          Order Now
+                        </button>
+                      </Link>
                     </div>
-                    <div className="w-1/2">
-                      <img src={googlebadge}></img>
+                    <div className="px-1">
+                      <Link to="/">
+                        <button
+                          class="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
+                          type="button"
+                          href
+                          // style={{"transition: all .15s ease"}}
+                        >
+                          Get The App
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
