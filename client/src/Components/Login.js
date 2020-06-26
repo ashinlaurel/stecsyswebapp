@@ -2,11 +2,13 @@ import React, { useState, useContext } from "react";
 import Axios from "axios";
 import { LoginContext } from "../Context/LoginContext";
 import { withRouter } from "react-router-dom";
+import spinner from "../assets/spinner3.gif";
 
 function Login(props) {
   const [email, setEmail] = useState("adminacc@stec.com");
   const [password, setPassword] = useState("password");
   const [err, setErr] = useState("");
+  const [loading, setloading] = useState(false);
 
   const {
     isLoggedIn,
@@ -21,6 +23,7 @@ function Login(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setloading(true);
     console.log("here");
     const userData = {
       email,
@@ -36,10 +39,12 @@ function Login(props) {
         setEmail("");
         setPassword("");
         props.history.push("/admin");
+        setloading(false);
       })
       .catch((err) => {
         console.log(err.res);
         setErr(err.response.data.message);
+        setloading(false);
       });
   };
   return (
@@ -131,6 +136,27 @@ function Login(props) {
                   </div>
                 </div>
               </section>
+              {loading ? (
+                <>
+                  <div
+                    className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                    // onClick={() => setShowModal(false)}
+                  >
+                    <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                      {/*content*/}
+                      <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                        {/*header*/}
+
+                        {/*body*/}
+                        <div className="relative p-6 flex-auto">
+                          <img src={spinner} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                </>
+              ) : null}
             </main>
           );
         }}
