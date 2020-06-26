@@ -62,7 +62,7 @@ function Signup(props) {
 
   return (
     <>
-      {isLoggedIn && isAdmin ? (
+      {isLoggedIn && Admin ? (
         <main>
           <div className="text-xl"> </div>
           <section className="absolute w-full h-full">

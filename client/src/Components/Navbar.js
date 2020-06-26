@@ -92,6 +92,19 @@ const Navbar = (props) => {
             {isLoggedIn ? (
               <li class="md:ml-4">
                 <Link
+                  to="/signup"
+                  class="border-t block no-underline  py-2 
+                text-grey-darkest md:border-none md:p-0"
+                >
+                  Create Users
+                </Link>
+              </li>
+            ) : (
+              <p></p>
+            )}
+            {isLoggedIn ? (
+              <li class="md:ml-4">
+                <Link
                   to="/"
                   class="border-t block no-underline  py-2 
                 text-grey-darkest md:border-none md:p-0"
