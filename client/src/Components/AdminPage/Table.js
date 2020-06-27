@@ -47,7 +47,7 @@ const TableData = () => {
       .post("/togglestatus", { id: id, status: nextStat })
       .then(() => {
         setRefresh(!refresh);
-        console.log("res");
+        // console.log("res");
       })
       .catch((err) => {
         console.log(err);
@@ -67,7 +67,7 @@ const TableData = () => {
     showAll: showAll,
   };
   useEffect(() => {
-    console.log("useeffect rerun");
+    // console.log("useeffect rerun");
     axios
       .post("/output", sortdetails)
       .then((res) => {
@@ -92,6 +92,16 @@ const TableData = () => {
     let column = SORT_OPTIONS[sortBy].column;
     // console.log(direction);
     // console.log(column);
+    if (column == "time") {
+      neworder.map((doc) => {
+        // console.log(doc[column]);
+        let thestr = doc[column];
+        // console.log(thestr);
+        thestr = thestr.replace(/:/g, "");
+        // console.log(thestr);
+        // doc[column] = thestr;
+      });
+    }
     if (direction === "asc") {
       neworder.sort((a, b) => {
         if (a[column] < b[column]) {
@@ -113,11 +123,11 @@ const TableData = () => {
         return 0;
       });
     }
-    console.log(status);
+    // console.log(status);
     // console.log(neworder);
     // console.log("hhaa");
 
-    console.log(neworder);
+    // console.log(neworder)
     // console.log(neworder);
     // setOrder(neworder);
 
@@ -136,22 +146,7 @@ const TableData = () => {
 
   useMemo(() => {
     Sorter();
-    // if (status !== "all") {
-    // let neword = order.filter((item) => {
-    //   console.log(item.status);
-    //   return item.status === status;
-    // });
-    // if (order !== neword) setOrder(neword);
-    // }
   }, [order, sortBy]);
-  // useMemo(() => {
-  //   setOrder(
-  //     order.filter((item) => {
-  //       console.log(item.status);
-  //       return item.status === status;
-  //     })
-  //   );
-  // }, [status]);
 
   return (
     <body class="antialiased font-sans">
@@ -272,6 +267,7 @@ const TableData = () => {
                   style={{ transition: "all .15s ease" }}
                   onClick={() => {
                     setRefresh(!refresh);
+                    setSearchInp("");
                     setSearchPass(searchinp);
                   }}
                 >
@@ -389,7 +385,11 @@ const TableData = () => {
                           >
                             <span
                               aria-hidden
-                              class="absolute inset-0 bg-green-200 opacity-50 rounded-full "
+                              class={`absolute inset-0 ${
+                                doc.status === "active"
+                                  ? "bg-red-300"
+                                  : "bg-green-200"
+                              }  opacity-50 rounded-full`}
                             ></span>
                             <span class="relative">{doc.status}</span>
                           </span>

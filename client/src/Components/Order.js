@@ -120,7 +120,7 @@ export default function Order() {
             <div className="md:flex md:items-center mb-6">
               <div className="md:w-1/3">
                 <label
-                  className=" sm:text-xl block text-gray-800  md:ml-32 mb-1 md:mb-0 pr-4"
+                  className=" sm:text-xl block text-gray-800 md:ml-32 mb-1 md:mb-0 pr-4"
                   for="inline-full-name"
                 >
                   Mobile Number

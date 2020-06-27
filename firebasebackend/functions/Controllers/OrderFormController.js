@@ -10,6 +10,7 @@ const orderFormController = {
     const neworder = {
       createdat: today.toDateString(),
       time: timer,
+      sort_date: today,
       name: req.body.name,
       name_lower: req.body.name.toLowerCase(),
       phone: req.body.phone,
