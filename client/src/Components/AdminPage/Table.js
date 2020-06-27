@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useContext } from "react";
 import axios from "axios";
 import Calendar from "react-calendar";
+import { LoginContext } from "../../Context/LoginContext";
+import spinner from "../../assets/spinner3.gif";
 
 const TableData = () => {
   const SORT_OPTIONS = {
@@ -24,6 +26,9 @@ const TableData = () => {
   const [datedrop, setDateDrop] = useState(false);
   const [showAll, setShowAll] = useState("Show By Date");
   const [status, setStatus] = useState("all");
+  const [loading, setLoading] = useState(false);
+
+  const { Admin } = useContext(LoginContext);
 
   const Modalpop = (doc) => {
     setModalData(doc);
@@ -40,6 +45,7 @@ const TableData = () => {
   };
 
   const toggleStatus = (id, stat) => {
+    // console.log(Admin);
     let nextStat;
     if (stat === "active") nextStat = "completed";
     else nextStat = "active";
@@ -55,6 +61,18 @@ const TableData = () => {
     console.log(id);
   };
 
+  const deleteData = (id) => {
+    axios
+      .post("/delete", { id: id })
+      .then(() => {
+        setRefresh(!refresh);
+        console.log("res");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const searchSubmit = (e) => {
     e.preventDefault();
     setSearchPass(searchinp);
@@ -68,11 +86,13 @@ const TableData = () => {
   };
   useEffect(() => {
     console.log("useeffect rerun");
+    setLoading(true);
     axios
       .post("/output", sortdetails)
       .then((res) => {
         const neworder = res.data;
         setOrder(neworder);
+        setLoading(false);
 
         return () => {
           console.log("done");
@@ -80,6 +100,7 @@ const TableData = () => {
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
   }, [refresh, datesel, searchpass, showAll]);
 
@@ -477,6 +498,37 @@ const TableData = () => {
                       Mark{" "}
                       {modaldata.status == "active" ? "Completed" : "Active"}
                     </button>
+                    {Admin ? (
+                      <button
+                        className="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+                        type="button"
+                        style={{ transition: "all .15s ease" }}
+                        onClick={() => deleteData(modaldata.id)}
+                      >
+                        Delete
+                      </button>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          </>
+        ) : null}
+        {loading ? (
+          <>
+            <div
+              className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+              // onClick={() => setShowModal(false)}
+            >
+              <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                {/*content*/}
+                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                  {/*header*/}
+
+                  {/*body*/}
+                  <div className="relative p-6 flex-auto">
+                    <img src={spinner} />
                   </div>
                 </div>
               </div>

@@ -83,6 +83,23 @@ const adminTableController = {
 
     // return res.status(200).json({ message: "completed" });
   },
+  deletedata(req, res) {
+    console.log("delete");
+    const id = req.body.id;
+    firebase
+      .firestore()
+      .collection("orderdata")
+      .doc(id)
+      .delete()
+      .then(function () {
+        console.log("Document successfully deleted!");
+        return res.status(200).json({ message: "Deleted!" });
+      })
+      .catch(function (error) {
+        console.error("Error removing document: ", error);
+        return res.status(200).json({ error: error.code });
+      });
+  },
 };
 
 module.exports = adminTableController;

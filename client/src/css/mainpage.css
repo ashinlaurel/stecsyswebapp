@@ -13,3 +13,8 @@
 .navbg {
   background-color: #5f4d93;
 }
+
+button {
+  white-space: nowrap;
+  overflow: hidden;
+}
