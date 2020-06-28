@@ -1,16 +1,16 @@
 const { ref } = require("firebase-functions/lib/providers/database");
 
 const firebase = require("../firebase").default;
+const moment = require("moment");
 
 const orderFormController = {
   theorder(req, res) {
-    let today = new Date();
-    let timer =
-      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    // let today = new Date();
+    // let timer =
+    //   today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    let today = moment().format();
     const neworder = {
-      createdat: today.toDateString(),
-      time: timer,
-      sort_date: today,
+      createdat: today,
       name: req.body.name,
       name_lower: req.body.name.toLowerCase(),
       phone: req.body.phone,
