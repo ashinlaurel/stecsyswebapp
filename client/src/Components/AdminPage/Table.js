@@ -9,8 +9,6 @@ const TableData = () => {
   const SORT_OPTIONS = {
     NAME_ASC: { column: "name_lower", direction: "desc" },
     NAME_DESC: { column: "name_lower", direction: "asc" },
-    DATE_ASC: { column: "createdat", direction: "asc" },
-    DATE_DESC: { column: "createdat", direction: "desc" },
     TIME_ASC: { column: "createdat", direction: "asc" },
     TIME_DESC: { column: "createdat", direction: "desc" },
   };
@@ -286,8 +284,6 @@ const TableData = () => {
                   <option value="TIME_DESC">Time(Oldest)</option>
                   <option value="NAME_ASC">Name(A-Z)</option>
                   <option value="NAME_DESC">Name(Z-A)</option>
-                  <option value="DATE_ASC">Date(Latest)</option>
-                  <option value="DATE_DESC">Date(Oldest)</option>
                 </select>
 
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
