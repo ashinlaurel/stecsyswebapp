@@ -411,11 +411,19 @@ const TableData = () => {
                               aria-hidden
                               class={`absolute inset-0 ${
                                 doc.status === "active"
-                                  ? "bg-red-300"
+                                  ? "bg-red-300 "
                                   : "bg-green-200"
                               }  opacity-50 rounded-full`}
                             ></span>
-                            <span class="relative">{doc.status}</span>
+                            <span
+                              class={`relative ${
+                                doc.status === "active"
+                                  ? "text-red-900 "
+                                  : "text-green-900"
+                              }`}
+                            >
+                              {doc.status}
+                            </span>
                           </span>
                         </td>
                       </tr>
