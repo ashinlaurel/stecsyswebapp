@@ -124,18 +124,6 @@ const TableData = () => {
 
     let direction = SORT_OPTIONS[sortBy].direction;
     let column = SORT_OPTIONS[sortBy].column;
-    // console.log(direction);
-    // console.log(column);
-    // if (column == "time") {
-    //   neworder.map((doc) => {
-    //     console.log(doc[column]);
-    // let thestr = doc[column];
-    // console.log(thestr);
-    // thestr = thestr.replace(/:/g, "");
-    // console.log(thestr);
-    // doc[column] = thestr;
-    //   });
-    // }
     if (direction === "asc") {
       neworder.sort((a, b) => {
         if (a[column] < b[column]) {
@@ -198,13 +186,24 @@ const TableData = () => {
                 : moment(datesel).format("DD-MM-YYYY")
               : "All Orders"}
           </div>
-          <div class="my-2 flex sm:flex-row flex-col  ">
-            <div class="flex flex-row mb-1 sm:mb-0">
+          <div class="my-2 flex sm:flex-row flex-col ">
+            <div class="flex flex-row mb-1 sm:mb-0 justify-center items-center">
+              <div className="flex flex-row items-center justify-center mr-1 h-full w-56 px-2 rounded border appearance-none  bg-white border-gray-400 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-500  ">
+                <label className="mr-2">Range Mode:</label>
+                <input
+                  type="checkbox"
+                  defaultChecked={rangebol}
+                  onInput={() => {
+                    setRangeBol(!rangebol);
+                    setDateSelTwo(datesel);
+                  }}
+                />
+              </div>
               {/* {showAll !== "ALL" ? (
                 <div id="zdropdown" className=" relative">
                   <button
                     onClick={dateselectbutton}
-                    className="h-full rounded-l border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
+                    className="h-full rounded border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
                   >
                     {datesel.toDateString()}
                   </button>
@@ -219,12 +218,12 @@ const TableData = () => {
                   </div>
 
                   {datedrop ? (
-                    <div className=" z-50 w-64 absolute bg-gray-100  rounded-lg ">
+                    <div className=" z-50 w-64 absolute bg-gray-100  roundedg ">
                       <Calendar
                         onChange={onDateSelection}
                         // selectRange="true"
                         value={datesel}
-                        className="rounded-lg shadow-sm px-2 "
+                        className="roundedg shadow-sm px-2 "
                       />
                     </div>
                   ) : null}
@@ -239,7 +238,7 @@ const TableData = () => {
                         id="thedate2"
                         name="thedate1"
                         value={moment(datesel).format("YYYY-MM-D")}
-                        className="h-full rounded-l border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
+                        className="h-full rounded border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
                         onInput={(e) => {
                           // onDateSelection(date);
                           onDateSelection(e.target.value);
@@ -252,7 +251,7 @@ const TableData = () => {
                         id="thedate2"
                         name="thedate2"
                         value={moment(dateseltwo).format("YYYY-MM-D")}
-                        className="h-full rounded-l border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
+                        className="h-full rounded border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
                         onInput={(e) => {
                           // onDateSelection(date);
                           onDateSelectionTwo(e.target.value);
@@ -267,7 +266,7 @@ const TableData = () => {
                       id="thedate"
                       name="thedate"
                       value={moment(datesel).format("YYYY-MM-D")}
-                      className="h-full rounded-l border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
+                      className="h-full rounded border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
                       onInput={(e) => {
                         // onDateSelection(date);
                         onDateSelection(e.target.value);
@@ -374,7 +373,7 @@ const TableData = () => {
                   {showAll == "ALL" ? "Show By Date" : "Show All"}
                 </button>
               </div>
-              <div className="w-10"></div>
+              {/* <div className="w-10"></div>
               <div>
                 <button
                   className="bg-blue-500 text-white hover:bg-blue-700 font-bold uppercase text-sm sm:text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
@@ -388,11 +387,11 @@ const TableData = () => {
                   <i className="fa fa-refresh"></i>{" "}
                   {rangebol ? "Range Mode" : "Non Range Mode"}
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
           <div class=" px-4 sm:px-8 py-4 overflow-x-auto">
-            <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+            <div class="inline-block min-w-full shadow roundedg overflow-hidden">
               <table class="min-w-full leading-normal">
                 <thead>
                   <tr>
@@ -518,7 +517,7 @@ const TableData = () => {
             >
               <div className="relative w-auto my-6 mx-auto max-w-sm">
                 {/*content*/}
-                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                <div className="border-0 roundedg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                   {/*header*/}
                   <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
                     <h3 className="text-3xl font-semibold">Order Details</h3>
@@ -606,7 +605,7 @@ const TableData = () => {
             >
               <div className="relative w-auto my-6 mx-auto max-w-3xl">
                 {/*content*/}
-                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                <div className="border-0 roundedg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                   {/*header*/}
 
                   {/*body*/}
