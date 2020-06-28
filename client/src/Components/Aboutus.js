@@ -8,12 +8,12 @@ export default function AboutUs() {
       <div className="relative flex flex-col min-w-0 bg-white w-full mx-6 sm:mx-32 shadow-xl rounded-lg ">
         <div className="px-6">
           <div className="text-center mt-12">
-            <h3 className="text-4xl font-semibold leading-normal mb-1 text-gray-800 ">
+            <h3 className="text-4xl font-semibold leading-normal mb-1 text-gray-800 headingBold">
               What We Do
             </h3>
-            <div className="text-sm leading-normal mb-2 text-gray-500 font-bold uppercase">
+            {/* <div className="text-sm leading-normal mb-2 text-gray-500 font-bold uppercase">
               -Since 1996
-            </div>
+            </div> */}
           </div>
           <div className="py-10 border-t border-gray-300 text-center">
             <div className="flex flex-wrap justify-center items-center">
@@ -29,7 +29,7 @@ export default function AboutUs() {
                   <div className="text-pink-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-pink-300">
                     <i className="fa fa-desktop text-xl"></i>
                   </div>
-                  <h3 className="text-3xl font-semibold">
+                  <h3 className="text-3xl headingBold">
                     One Stop For All Your Computer Needs
                   </h3>
                   <p className="mt-4 text-lg leading-relaxed text-gray-600">
@@ -71,7 +71,7 @@ export default function AboutUs() {
             <div className="mt-32">
               <div className=" ">
                 <div className="flex items-center justify-center my-10">
-                  <div className="text-4xl font-semibold">
+                  <div className="text-4xl  headingBold">
                     Our Featured Products
                   </div>
                 </div>
@@ -86,7 +86,7 @@ export default function AboutUs() {
                             aria-hidden="true"
                           ></i>
                         </div>
-                        <h6 className="text-xl font-semibold">
+                        <h6 className="text-xl headingBold">
                           Inkjet Cartridges
                         </h6>
                         <p className="mt-2 mb-4 text-gray-600">
@@ -103,7 +103,7 @@ export default function AboutUs() {
                         <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
                           <i className="fa fa-print" aria-hidden="true"></i>
                         </div>
-                        <h6 className="text-xl font-semibold">
+                        <h6 className="text-xl headingBold">
                           Toner Cartridges
                         </h6>
                         <p className="mt-2 mb-4 text-gray-600">
@@ -120,7 +120,7 @@ export default function AboutUs() {
                         <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
                           <i className="fa fa-refresh" aria-hidden="true"></i>
                         </div>
-                        <h6 className="text-xl font-semibold">
+                        <h6 className="text-xl headingBold">
                           Toner Refillings
                         </h6>
                         <p className="mt-2 mb-4 text-gray-600">
@@ -141,7 +141,7 @@ export default function AboutUs() {
                             aria-hidden="true"
                           ></i>
                         </div>
-                        <h6 className="text-xl font-semibold">
+                        <h6 className="text-xl headingBold">
                           Computer Peripherals
                         </h6>
                         <p className="mt-2 mb-4 text-gray-600">
@@ -158,7 +158,7 @@ export default function AboutUs() {
                         <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
                           <i className="fa fa-retweet" aria-hidden="true"></i>
                         </div>
-                        <h6 className="text-xl font-semibold">Consumables</h6>
+                        <h6 className="text-xl headingBold">Consumables</h6>
                         <p className="mt-2 mb-4 text-gray-600">
                           All Epson, Canon and Hp Consumables.
                         </p>
@@ -172,7 +172,7 @@ export default function AboutUs() {
                         <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
                           <i className="fa fa-laptop" aria-hidden="true"></i>
                         </div>
-                        <h6 className="text-xl font-semibold">
+                        <h6 className="text-xl headingBold">
                           Computer Accessories
                         </h6>
                         <p className="mt-2 mb-4 text-gray-600">

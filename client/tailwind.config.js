@@ -1,8 +1,14 @@
 module.exports = {
   purge: [],
   theme: {
-    extend: {},
+    extend: {
+      theme: {
+        fontFamily: {
+          heading: ["Maven Pro", "sans-serif"],
+        },
+      },
+    },
   },
   variants: {},
   plugins: [],
-}
+};

@@ -17,10 +17,13 @@ export default function Home() {
             <div className="mx-2">
               <img className="" src={Logo} height="95" width="95" />
             </div>
-            <div className="text-5xl text-center sm:text-6xl text-gray-200 border-black leading-none">
+            <div
+              className="text-5xl text-center sm:text-6xl text-gray-200 border-black leading-none heading"
+              id="heading"
+            >
               Stec Systems
             </div>
-            <div className="text-base text-center sm:text-xl text-gray-200 border-black pt-1">
+            <div className="text-base text-center sm:text-xl text-gray-200 border-black pt-1 heading">
               Suppliers For All Your Computer Needs
             </div>
             <div className="text-left mt-6">

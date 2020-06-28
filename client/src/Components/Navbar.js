@@ -41,7 +41,10 @@ const Navbar = (props) => {
         {/* <!-- Logo text or image --> */}
         <div class="flex items-center justify-between   md:mb-0">
           <img className="mx-1" src={Logo} height="35" width="35" />
-          <h1 class="leading-none text-base sm:text-2xl text-grey-darkest">
+          <h1
+            class="leading-none text-base sm:text-2xl text-grey-darkest heading"
+            id="heading"
+          >
             <Link class="no-underline hover:text-white" to="/">
               <div>Stec Systems</div>
             </Link>
