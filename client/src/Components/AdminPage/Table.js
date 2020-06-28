@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import axios from "axios";
-import Calendar from "react-calendar";
 import { LoginContext } from "../../Context/LoginContext";
 import spinner from "../../assets/spinner3.gif";
 let moment = require("moment");
@@ -23,12 +22,10 @@ const TableData = () => {
   const todaydate = new Date();
   const [datesel, setDateSel] = useState(moment().format("YYYY-MM-DD"));
   const [dateseltwo, setDateSelTwo] = useState(moment().format("YYYY-MM-DD"));
-  // const [datedrop, setDateDrop] = useState(false);
   const [showAll, setShowAll] = useState("Show By Date");
   const [status, setStatus] = useState("all");
   const [loading, setLoading] = useState(false);
   const [rangebol, setRangeBol] = useState(false);
-
   const { Admin } = useContext(LoginContext);
 
   const Modalpop = (doc) => {
@@ -37,21 +34,13 @@ const TableData = () => {
   };
 
   const onDateSelection = (date) => {
-    // date = moment(date).format();
-    // console.log(date);
     setDateSel(date);
     if (!rangebol) {
       setDateSelTwo(date);
     }
   };
   const onDateSelectionTwo = (date) => {
-    // date = moment(date).format();
-    // console.log(date);
     setDateSelTwo(date);
-  };
-
-  const dateselectbutton = () => {
-    // setDateDrop(!datedrop);
   };
 
   const toggleStatus = (id, stat) => {
@@ -143,13 +132,6 @@ const TableData = () => {
         return 0;
       });
     }
-    // console.log(status);
-    // console.log(neworder);
-    // console.log("hhaa");
-
-    // console.log(neworder)
-    // console.log(neworder);
-    // setOrder(neworder);
 
     return () => {
       // console.log("sorting finished");
@@ -174,151 +156,64 @@ const TableData = () => {
         <div class="py-8 ">
           <div className="flex justify-start items-center">
             <div>
-              <h2 class="text-3xl leading-tight">Orders</h2>
+              <h2 class="text-3xl leading-tight">
+                {`Orders (${order.length})`}
+              </h2>
             </div>
           </div>
           <div>
             {showAll !== "ALL"
               ? rangebol
-                ? "Range Mode"
+                ? `${moment(datesel).format("DD-MM-YYYY")} to ${moment(
+                    dateseltwo
+                  ).format("DD-MM-YYYY")}`
                 : moment(datesel).format("DD-MM-YYYY")
               : "All Orders"}
           </div>
-          <div class="my-2 flex sm:flex-row flex-col ">
-            <div class="flex flex-row mb-1 sm:mb-0 justify-center items-center">
-              <div className="flex flex-row items-center justify-center mr-1 h-full w-56 px-2 rounded border appearance-none  bg-white border-gray-400 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-500  ">
-                <label className="mr-2">Range Mode:</label>
+          <div class="my-2 flex sm:flex-row flex-col items-start sm:items-center sm:justify-left  h-full ">
+            <div className="flex flex-row items-center justify-center mr-1 h-10 sm:h-full w-48 rounded border py-2 shadow-md md:ml-5 md:mr-5  appearance-none  bg-white border-gray-400 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 ">
+              <label className="mr-2">Range Mode:</label>
+              <input
+                type="checkbox"
+                className="form-checkbox h-4 w-4 shadow-md  focus:outline-none"
+                defaultChecked={rangebol}
+                onInput={() => {
+                  setRangeBol(!rangebol);
+                  setDateSelTwo(datesel);
+                }}
+              />
+            </div>
+            <div className="flex sm:inline-flex my-3 sm:my-0">
+              <div className="mr-2 sm:mr-0">
                 <input
-                  type="checkbox"
-                  defaultChecked={rangebol}
-                  onInput={() => {
-                    setRangeBol(!rangebol);
-                    setDateSelTwo(datesel);
+                  type="date"
+                  id="thedate2"
+                  name="thedate1"
+                  value={moment(datesel).format("YYYY-MM-D")}
+                  className="shadow-md h-full rounded border block appearance-none w-40 sm:w-44 bg-white border-gray-400 text-gray-700 text-xs md:text-sm py-2 px-4  leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
+                  onInput={(e) => {
+                    // onDateSelection(date);
+                    onDateSelection(e.target.value);
                   }}
                 />
               </div>
-              {/* {showAll !== "ALL" ? (
-                <div id="zdropdown" className=" relative">
-                  <button
-                    onClick={dateselectbutton}
-                    className="h-full rounded border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
-                  >
-                    {datesel.toDateString()}
-                  </button>
-                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                    <svg
-                      class="fill-current h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                    </svg>
-                  </div>
-
-                  {datedrop ? (
-                    <div className=" z-50 w-64 absolute bg-gray-100  roundedg ">
-                      <Calendar
-                        onChange={onDateSelection}
-                        // selectRange="true"
-                        value={datesel}
-                        className="roundedg shadow-sm px-2 "
-                      />
-                    </div>
-                  ) : null}
-                </div>
-              ) : null} */}
-              {showAll !== "ALL" ? (
-                rangebol ? (
-                  <div>
-                    <div>
-                      <input
-                        type="date"
-                        id="thedate2"
-                        name="thedate1"
-                        value={moment(datesel).format("YYYY-MM-D")}
-                        className="h-full rounded border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
-                        onInput={(e) => {
-                          // onDateSelection(date);
-                          onDateSelection(e.target.value);
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <input
-                        type="date"
-                        id="thedate2"
-                        name="thedate2"
-                        value={moment(dateseltwo).format("YYYY-MM-D")}
-                        className="h-full rounded border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
-                        onInput={(e) => {
-                          // onDateSelection(date);
-                          onDateSelectionTwo(e.target.value);
-                        }}
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  <div>
-                    <input
-                      type="date"
-                      id="thedate"
-                      name="thedate"
-                      value={moment(datesel).format("YYYY-MM-D")}
-                      className="h-full rounded border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
-                      onInput={(e) => {
-                        // onDateSelection(date);
-                        onDateSelection(e.target.value);
-                      }}
-                    />
-                  </div>
-                )
-              ) : null}
-
-              <div class="relative">
-                <select
-                  class="appearance-none h-full rounded border block w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none   focus:bg-white focus:border-gray-500"
-                  value={sortBy}
-                  onChange={onSortToggle}
-                >
-                  <option value="TIME_ASC">Time(Latest)</option>
-                  <option value="TIME_DESC">Time(Oldest)</option>
-                  <option value="NAME_ASC">Name(A-Z)</option>
-                  <option value="NAME_DESC">Name(Z-A)</option>
-                </select>
-
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                  <svg
-                    class="fill-current h-4 w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </div>
-              </div>
-              <div class="relative">
-                <select
-                  class=" h-full rounded border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none   focus:bg-white focus:border-gray-500"
-                  value={status}
-                  onChange={onStatusToggle}
-                >
-                  <option value="all">All</option>
-                  <option value="active">Active</option>
-                  <option value="completed">Completed</option>
-                </select>
-
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                  <svg
-                    class="fill-current h-4 w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
-                </div>
+              <div className="ml-2 sm:ml-2 ">
+                <input
+                  type="date"
+                  id="thedate2"
+                  name="thedate2"
+                  value={moment(dateseltwo).format("YYYY-MM-D")}
+                  className="shadow-md h-full rounded border block appearance-none w-40 sm:w-44 bg-white border-gray-400 text-gray-700 text-xs md:text-sm py-2 px-4  leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
+                  onInput={(e) => {
+                    // onDateSelection(date);
+                    onDateSelectionTwo(e.target.value);
+                  }}
+                  disabled={!rangebol}
+                />
               </div>
             </div>
-            <div class="block relative">
+
+            <div class="block relative xl:ml-64">
               <span class="h-full absolute inset-y-0 left-0 flex items-center pl-2">
                 <svg
                   viewBox="0 0 24 24"
@@ -336,11 +231,11 @@ const TableData = () => {
                   value={searchinp}
                   onChange={(e) => setSearchInp(e.target.value)}
                   placeholder="Search"
-                  class="z-20 appearance-none rounded border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
+                  class="shadow-md z-20 appearance-none rounded border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
                 />
               </form>
             </div>
-            <div className="flex mt-5 sm:mt-0 items-center justify-center sm:ml-10">
+            <div className=" hidden flex mt-5 sm:mt-0 items-center justify-center sm:ml-10">
               <div>
                 <button
                   className=" bg-blue-500 text-white hover:bg-blue-700 font-bold uppercase text-sm sm:text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
@@ -369,25 +264,55 @@ const TableData = () => {
                   {showAll == "ALL" ? "Show By Date" : "Show All"}
                 </button>
               </div>
-              {/* <div className="w-10"></div>
-              <div>
-                <button
-                  className="bg-blue-500 text-white hover:bg-blue-700 font-bold uppercase text-sm sm:text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
-                  type="button"
-                  style={{ transition: "all .15s ease" }}
-                  onClick={() => {
-                    setRangeBol(!rangebol);
-                    setDateSelTwo(datesel);
-                  }}
+            </div>
+          </div>
+          <div className="mt-4 flex md:px-5">
+            <div class="relative ">
+              <select
+                class=" shadow-md appearance-none h-full rounded border block w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none   focus:bg-white focus:border-gray-500"
+                value={sortBy}
+                onChange={onSortToggle}
+              >
+                <option value="TIME_ASC">Time(Latest)</option>
+                <option value="TIME_DESC">Time(Oldest)</option>
+                <option value="NAME_ASC">Name(A-Z)</option>
+                <option value="NAME_DESC">Name(Z-A)</option>
+              </select>
+
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg
+                  class="fill-current h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
                 >
-                  <i className="fa fa-refresh"></i>{" "}
-                  {rangebol ? "Range Mode" : "Non Range Mode"}
-                </button>
-              </div> */}
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                </svg>
+              </div>
+            </div>
+            <div class="relative mx-5 ">
+              <select
+                class=" shadow-md h-full rounded border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none   focus:bg-white focus:border-gray-500"
+                value={status}
+                onChange={onStatusToggle}
+              >
+                <option value="all">All</option>
+                <option value="active">Active</option>
+                <option value="completed">Completed</option>
+              </select>
+
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg
+                  class="fill-current h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                </svg>
+              </div>
             </div>
           </div>
           <div class=" px-4 sm:px-8 py-4 overflow-x-auto">
-            <div class="inline-block min-w-full shadow roundedg overflow-hidden">
+            <div class="shadow-lg  inline-block min-w-full rounded-lg overflow-hidden">
               <table class="min-w-full leading-normal">
                 <thead>
                   <tr>
@@ -422,7 +347,7 @@ const TableData = () => {
                     .map((doc) => (
                       <tr
                         key={doc.id}
-                        className="hover:bg-white cursor-pointer "
+                        className="hover:bg-blue-100 transition-all duration-300 ease-in-out hover:shadow-lg  "
                       >
                         <td
                           onClick={() => {
