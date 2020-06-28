@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { LoginContext } from "../Context/LoginContext";
 import menu from "../assets/menu.png";
+import Logo from "../assets/logoc.png";
 
 const Navbar = (props) => {
   const {
@@ -36,12 +37,13 @@ const Navbar = (props) => {
   };
   return (
     <div className="text-white ">
-      <header class=" navbg md:flex md:items-center md:justify-between p-6 pb-2 shadow-lg md:pb-4 ">
+      <header class=" navbg md:flex md:items-center md:justify-between p-3 shadow-lg md: ">
         {/* <!-- Logo text or image --> */}
-        <div class="flex items-center justify-between mb-2  md:mb-0">
+        <div class="flex items-center justify-between   md:mb-0">
+          <img className="mx-1" src={Logo} height="35" width="35" />
           <h1 class="leading-none text-base sm:text-2xl text-grey-darkest">
             <Link class="no-underline hover:text-white" to="/">
-              Stec Systems
+              <div>Stec Systems</div>
             </Link>
           </h1>
           <div

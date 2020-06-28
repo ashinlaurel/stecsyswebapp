@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import LandingImg from "../assets/landingimage.png";
 import Navbar from "./Navbar";
 import "../css/mainpage.css";
-import Logo from "../assets/logo.svg";
+import Logo from "../assets/logoc.png";
 import LogoGif from "../assets/logogif.gif";
 import AboutUs from "./Aboutus";
 import Footer from "./Footer";
@@ -15,7 +15,7 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row justify-around items-center pt-24 mx-5 sm:mx-0 overflow-hidden">
           <div className="flex flex-col h-full justify-center items-center">
             <div className="mx-2">
-              <img className="" src={Logo} height="75" width="75" />
+              <img className="" src={Logo} height="95" width="95" />
             </div>
             <div className="text-5xl text-center sm:text-6xl text-gray-200 border-black leading-none">
               Stec Systems
