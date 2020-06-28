@@ -97,7 +97,7 @@ export default function AboutUs() {
                     </div>
                   </div>
 
-                  <div className="w-full md:w-4/12 px-4 text-center">
+                  <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
                     <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                       <div className="px-4 py-5 flex-auto">
                         <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
@@ -114,14 +114,14 @@ export default function AboutUs() {
                     </div>
                   </div>
 
-                  <div className="pt-6 w-full md:w-4/12 px-4 text-center">
+                  <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
                     <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                       <div className="px-4 py-5 flex-auto">
                         <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
                           <i className="fa fa-refresh" aria-hidden="true"></i>
                         </div>
                         <h6 className="text-xl font-semibold">
-                          Toner Refilling
+                          Toner Refillings
                         </h6>
                         <p className="mt-2 mb-4 text-gray-600">
                           Refill used toner cartridges without any compromise in
@@ -152,11 +152,11 @@ export default function AboutUs() {
                     </div>
                   </div>
 
-                  <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+                  <div className=" w-full md:w-4/12 px-4 text-center">
                     <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                       <div className="px-4 py-5 flex-auto">
                         <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
-                          <i className="fa fa-retweet"></i>
+                          <i className="fa fa-retweet" aria-hidden="true"></i>
                         </div>
                         <h6 className="text-xl font-semibold">Consumables</h6>
                         <p className="mt-2 mb-4 text-gray-600">
@@ -176,8 +176,8 @@ export default function AboutUs() {
                           Computer Accessories
                         </h6>
                         <p className="mt-2 mb-4 text-gray-600">
-                          Shop from a wide collection of products ranging from
-                          printers to pendrives and much more.
+                          Wide collection of products ranging from printers to
+                          pendrives and more.
                         </p>
                       </div>
                     </div>
