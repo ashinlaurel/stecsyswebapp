@@ -11,8 +11,8 @@ const TableData = () => {
     NAME_DESC: { column: "name_lower", direction: "asc" },
     DATE_ASC: { column: "createdat", direction: "asc" },
     DATE_DESC: { column: "createdat", direction: "desc" },
-    TIME_ASC: { column: "sort_date", direction: "asc" },
-    TIME_DESC: { column: "sort_date", direction: "desc" },
+    TIME_ASC: { column: "createdat", direction: "asc" },
+    TIME_DESC: { column: "createdat", direction: "desc" },
   };
 
   const [showModal, setShowModal] = useState(false);
@@ -23,11 +23,13 @@ const TableData = () => {
   const [searchinp, setSearchInp] = useState("");
   const [searchpass, setSearchPass] = useState("");
   const todaydate = new Date();
-  const [datesel, setDateSel] = useState(moment().format());
-  const [datedrop, setDateDrop] = useState(false);
+  const [datesel, setDateSel] = useState(moment().format("YYYY-MM-DD"));
+  const [dateseltwo, setDateSelTwo] = useState(moment().format("YYYY-MM-DD"));
+  // const [datedrop, setDateDrop] = useState(false);
   const [showAll, setShowAll] = useState("Show By Date");
   const [status, setStatus] = useState("all");
   const [loading, setLoading] = useState(false);
+  const [rangebol, setRangeBol] = useState(false);
 
   const { Admin } = useContext(LoginContext);
 
@@ -37,14 +39,21 @@ const TableData = () => {
   };
 
   const onDateSelection = (date) => {
-    date = moment(date).format();
-    console.log(date);
+    // date = moment(date).format();
+    // console.log(date);
     setDateSel(date);
-    // setDateDrop(!datedrop);
+    if (!rangebol) {
+      setDateSelTwo(date);
+    }
+  };
+  const onDateSelectionTwo = (date) => {
+    // date = moment(date).format();
+    // console.log(date);
+    setDateSelTwo(date);
   };
 
   const dateselectbutton = () => {
-    setDateDrop(!datedrop);
+    // setDateDrop(!datedrop);
   };
 
   const toggleStatus = (id, stat) => {
@@ -83,7 +92,8 @@ const TableData = () => {
 
   let sortdetails = {
     details: sortBy,
-    date: moment(datesel).format("ddd MMM DD YYYY"),
+    datestart: datesel,
+    dateend: dateseltwo,
     search: searchpass,
     showAll: showAll,
   };
@@ -105,7 +115,7 @@ const TableData = () => {
         console.log(err);
         setLoading(false);
       });
-  }, [refresh, datesel, searchpass, showAll]);
+  }, [refresh, datesel, dateseltwo, searchpass, showAll]);
 
   const Sorter = () => {
     let neworder = order;
@@ -181,7 +191,13 @@ const TableData = () => {
               <h2 class="text-3xl leading-tight">Orders</h2>
             </div>
           </div>
-          {/* <div>{showAll !== "ALL" ? datesel.toDateString() : "All Orders"}</div> */}
+          <div>
+            {showAll !== "ALL"
+              ? rangebol
+                ? "Range Mode"
+                : moment(datesel).format("DD-MM-YYYY")
+              : "All Orders"}
+          </div>
           <div class="my-2 flex sm:flex-row flex-col  ">
             <div class="flex flex-row mb-1 sm:mb-0">
               {/* {showAll !== "ALL" ? (
@@ -215,19 +231,50 @@ const TableData = () => {
                 </div>
               ) : null} */}
               {showAll !== "ALL" ? (
-                <div>
-                  <input
-                    type="date"
-                    id="thedate"
-                    name="thedate"
-                    value={moment(datesel).format("YYYY-MM-D")}
-                    className="h-full rounded-l border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
-                    onInput={(e) => {
-                      // onDateSelection(date);
-                      onDateSelection(e.target.value);
-                    }}
-                  />
-                </div>
+                rangebol ? (
+                  <div>
+                    <div>
+                      <input
+                        type="date"
+                        id="thedate2"
+                        name="thedate1"
+                        value={moment(datesel).format("YYYY-MM-D")}
+                        className="h-full rounded-l border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
+                        onInput={(e) => {
+                          // onDateSelection(date);
+                          onDateSelection(e.target.value);
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <input
+                        type="date"
+                        id="thedate2"
+                        name="thedate2"
+                        value={moment(dateseltwo).format("YYYY-MM-D")}
+                        className="h-full rounded-l border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
+                        onInput={(e) => {
+                          // onDateSelection(date);
+                          onDateSelectionTwo(e.target.value);
+                        }}
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <input
+                      type="date"
+                      id="thedate"
+                      name="thedate"
+                      value={moment(datesel).format("YYYY-MM-D")}
+                      className="h-full rounded-l border block appearance-none w-44 bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
+                      onInput={(e) => {
+                        // onDateSelection(date);
+                        onDateSelection(e.target.value);
+                      }}
+                    />
+                  </div>
+                )
               ) : null}
 
               <div class="relative">
@@ -325,6 +372,21 @@ const TableData = () => {
                 >
                   <i className="fa fa-refresh"></i>{" "}
                   {showAll == "ALL" ? "Show By Date" : "Show All"}
+                </button>
+              </div>
+              <div className="w-10"></div>
+              <div>
+                <button
+                  className="bg-blue-500 text-white hover:bg-blue-700 font-bold uppercase text-sm sm:text-base px-4 py-1 rounded shadow-md hover:shadow-lg outline-none focus:outline-none "
+                  type="button"
+                  style={{ transition: "all .15s ease" }}
+                  onClick={() => {
+                    setRangeBol(!rangebol);
+                    setDateSelTwo(datesel);
+                  }}
+                >
+                  <i className="fa fa-refresh"></i>{" "}
+                  {rangebol ? "Range Mode" : "Non Range Mode"}
                 </button>
               </div>
             </div>

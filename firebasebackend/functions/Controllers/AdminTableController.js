@@ -4,16 +4,21 @@ const adminTableController = {
   getdata(req, res) {
     let order = {};
     let sortDetails = req.body.details;
-    let dateDetails = req.body.date;
+    let dateStartDetails = req.body.datestart;
+    let dateEndDetails = req.body.dateend;
     let search = req.body.search.toLowerCase();
     let showAll = req.body.showAll;
+    let start = new Date(dateStartDetails);
+    let end = new Date(dateEndDetails);
     // dateDetails = dateDetails.toDateString();
     console.log(search);
     if (search === "") {
       unsubscribe = firebase.firestore().collection("orderdata");
       if (showAll != "ALL") {
         console.log("all");
-        unsubscribe = unsubscribe.where("createdat", "==", dateDetails);
+        unsubscribe = unsubscribe
+          .where("sort_date", ">=", start)
+          .where("sort_date", "<=", end);
       }
       unsubscribe
         .get()

@@ -11,6 +11,7 @@ const orderFormController = {
     let today = moment().format();
     const neworder = {
       createdat: today,
+      sort_date: new Date(moment().format("YYYY-MM-DD")),
       name: req.body.name,
       name_lower: req.body.name.toLowerCase(),
       phone: req.body.phone,
