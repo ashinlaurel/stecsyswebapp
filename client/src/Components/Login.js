@@ -5,8 +5,8 @@ import { withRouter } from "react-router-dom";
 import spinner from "../assets/spinner3.gif";
 
 function Login(props) {
-  const [email, setEmail] = useState("adminacc@stec.com");
-  const [password, setPassword] = useState("password");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
   const [loading, setloading] = useState(false);
 
