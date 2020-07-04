@@ -37,9 +37,9 @@ const Navbar = (props) => {
   };
   return (
     <div className="text-white ">
-      <header class=" navbg md:flex md:items-center md:justify-between p-3 shadow-lg md: ">
+      <header class=" navbg md:flex md:items-center md:justify-between p-3 shadow-lg">
         {/* <!-- Logo text or image --> */}
-        <div class="flex items-center justify-between   md:mb-0">
+        <div class="flex items-center justify-between md:mb-0">
           <img className="mx-1" src={Logo} height="35" width="35" />
           <h1
             class="leading-none text-base sm:text-2xl text-grey-darkest heading"
@@ -64,11 +64,11 @@ const Navbar = (props) => {
         {/* <!-- END Logo text or image --> */}
         {/* <!-- Global navigation --> */}
         <nav className="hidden md:inline " id="drop">
-          <ul class="list-reset md:flex md:items-center font-bold uppercase  ">
+          <ul class="list-reset md:flex md:items-center font-bold uppercase mr-5 ">
             <li class="md:ml-4">
               <Link
                 onClick={() => closeDrop()}
-                class="block no-underline py-2 text-grey-darkest  md:border-none md:p-0"
+                class="block no-underline py-2 text-grey-darkest md:border-none md:p-0"
                 to="/"
               >
                 Home

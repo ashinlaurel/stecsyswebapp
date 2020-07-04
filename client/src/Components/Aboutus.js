@@ -68,17 +68,17 @@ export default function AboutUs() {
               </div>
             </div>
             {/* //////////////////////////////////////////////////////////////// */}
-            <div className="mt-32">
+            <div className="mt-16 md:mt-32">
               <div className=" ">
                 <div className="flex items-center justify-center my-10">
-                  <div className="text-4xl  headingBold">
+                  <div className="text-4xl headingBold">
                     Our Featured Products
                   </div>
                 </div>
 
-                <div className="flex flex-wrap pt-5">
+                <div className="flex flex-wrap">
                   <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
-                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                    <div className="relative h-full flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                       <div className="px-4 py-5 flex-auto">
                         <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
                           <i
@@ -98,7 +98,7 @@ export default function AboutUs() {
                   </div>
 
                   <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
-                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                    <div className="relative h-full flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                       <div className="px-4 py-5 flex-auto">
                         <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
                           <i className="fa fa-print" aria-hidden="true"></i>
@@ -115,7 +115,7 @@ export default function AboutUs() {
                   </div>
 
                   <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
-                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                    <div className="relative h-full flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                       <div className="px-4 py-5 flex-auto">
                         <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
                           <i className="fa fa-refresh" aria-hidden="true"></i>
@@ -131,9 +131,9 @@ export default function AboutUs() {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-wrap ">
-                  <div className=" w-full md:w-4/12 px-4 text-center">
-                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                <div className="flex flex-wrap mt-4 ">
+                  <div className=" w-full pt-6 md:w-4/12 px-4 text-center">
+                    <div className="relative h-full flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                       <div className="px-4 py-5 flex-auto">
                         <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
                           <i
@@ -152,8 +152,8 @@ export default function AboutUs() {
                     </div>
                   </div>
 
-                  <div className=" w-full md:w-4/12 px-4 text-center">
-                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                  <div className=" w-full pt-6  md:w-4/12 px-4 text-center">
+                    <div className="relative h-full flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                       <div className="px-4 py-5 flex-auto">
                         <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
                           <i className="fa fa-retweet" aria-hidden="true"></i>
@@ -166,8 +166,8 @@ export default function AboutUs() {
                     </div>
                   </div>
 
-                  <div className=" w-full md:w-4/12 px-4 text-center">
-                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                  <div className=" w-full pt-6 md:w-4/12 px-4 text-center">
+                    <div className="relative h-full flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                       <div className="px-4 py-5 flex-auto">
                         <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
                           <i className="fa fa-laptop" aria-hidden="true"></i>
@@ -208,7 +208,7 @@ export default function AboutUs() {
                           </span>
                         </div>
                         <div>
-                          <h4 className="text-gray-600">
+                          <h4 className="text-left text-gray-600">
                             Seamless Online Ordering Process
                           </h4>
                         </div>
@@ -222,7 +222,7 @@ export default function AboutUs() {
                           </span>
                         </div>
                         <div>
-                          <h4 className="text-gray-600">
+                          <h4 className="text-left text-gray-600">
                             Superior Quality Products
                           </h4>
                         </div>
@@ -236,18 +236,20 @@ export default function AboutUs() {
                           </span>
                         </div>
                         <div>
-                          <h4 className="text-gray-600">Best Prices</h4>
+                          <h4 className="text-left text-gray-600">
+                            Best Prices
+                          </h4>
                         </div>
                       </div>
                     </li>
                   </ul>
                 </div>
               </div>
-              <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
+              <div className="hidden md:flex w-full md:w-4/12 ml-auto mr-auto px-4">
                 <img
-                  alt="..."
+                  alt="About Us"
                   className="max-w-full rounded-lg shadow-lg"
-                  src="https://images.pexels.com/photos/3184431/pexels-photo-3184431.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=650&w=940"
+                  src="https://images.pexels.com/photos/3184610/pexels-photo-3184610.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                 />
               </div>
             </div>

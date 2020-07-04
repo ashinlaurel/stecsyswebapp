@@ -189,7 +189,7 @@ const TableData = () => {
                   type="date"
                   id="thedate2"
                   name="thedate1"
-                  value={moment(datesel).format("YYYY-MM-D")}
+                  value={moment(datesel).format("YYYY-MM-DD")}
                   className="shadow-md h-full rounded border block appearance-none w-40 sm:w-44 bg-white border-gray-400 text-gray-700 text-xs md:text-sm py-2 px-4  leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
                   onInput={(e) => {
                     // onDateSelection(date);
@@ -202,7 +202,7 @@ const TableData = () => {
                   type="date"
                   id="thedate2"
                   name="thedate2"
-                  value={moment(dateseltwo).format("YYYY-MM-D")}
+                  value={moment(dateseltwo).format("YYYY-MM-DD")}
                   className="shadow-md h-full rounded border block appearance-none w-40 sm:w-44 bg-white border-gray-400 text-gray-700 text-xs md:text-sm py-2 px-4  leading-tight focus:outline-none focus:bg-white focus:border-gray-500 "
                   onInput={(e) => {
                     // onDateSelection(date);

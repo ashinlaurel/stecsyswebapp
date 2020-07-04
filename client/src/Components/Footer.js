@@ -11,7 +11,28 @@ export default function Footer() {
               <h5 className="text-lg mt-0 mb-2 text-black">
                 Find us on any of these platforms, we respond 1-2 business days.
               </h5>
-              <div className="my-6">
+              <div className="flex-col">
+                <div className="flex ">
+                  <div className="font-bold">Phone : </div>
+                  <div className="pl-1"> 0471-2453598 , 0471-2572230</div>
+                </div>
+                <div className="flex ">
+                  <div className="font-bold">Mobile : </div>
+                  <div className="pl-1"> 7356670900 </div>
+                </div>
+                <div className="flex ">
+                  <div className="font-bold">Email : </div>
+                  <div className="pl-1"> stecsys@gmail.com </div>
+                </div>
+                <div className="flex ">
+                  <div className="font-bold">Address: </div>
+                  <div className="pl-1">
+                    No.4, Kohinoor flats Luke's lane Ambujavilasom Road,
+                    Trivandrum
+                  </div>
+                </div>
+              </div>
+              <div className=" hidden my-6">
                 <button
                   className="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                   type="button"
@@ -32,7 +53,7 @@ export default function Footer() {
                 </button>
               </div>
             </div>
-            <div className="w-full lg:w-6/12 px-4">
+            <div className="hidden w-full border border-black lg:w-6/12 px-4">
               <div className="flex flex-wrap items-top mb-6">
                 <div className="w-full lg:w-4/12 px-4 ml-auto">
                   <span className="block uppercase  text-sm font-semibold mb-2">
