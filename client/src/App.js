@@ -11,11 +11,11 @@ import LoginContextProvider from "./Context/LoginContext";
 import Navbar from "./Components/Navbar";
 
 // Uncomment During Production-----------------------------------------------------------------------------------
-// axios.defaults.baseURL =
-// "https://us-central1-stecsys-app.cloudfunctions.net/api";
+axios.defaults.baseURL =
+  "https://us-central1-stecsys-app.cloudfunctions.net/api";
 // --------Also dont forget to change proxy in client's package.json---------------------------------------------
 
-axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL = "http://localhost:3001";
 function App() {
   return (
     <div className="">

@@ -45,6 +45,10 @@ app.post("/togglestatus", (req, res) => {
   adminTableController.toggleStatus(req, res);
 });
 
+app.post("/delete", (req, res) => {
+  adminTableController.deletedata(req, res);
+});
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server Listening on port ${PORT}`);

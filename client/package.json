@@ -41,5 +41,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "https://us-central1-stecsys-app.cloudfunctions.net/api"
 }

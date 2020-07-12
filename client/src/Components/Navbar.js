@@ -11,13 +11,13 @@ const Navbar = (props) => {
     handle,
     setHandle,
     setUserToken,
-    setAdmin,
+    // setAdmin,
   } = useContext(LoginContext);
   const Logout = () => {
     setisLoggedIn(false);
     setHandle("");
-    setAdmin(false);
-    closeDrop();
+    // setAdmin(false);
+    // closeDrop();
   };
   const openDrop = () => {
     const drop = document.querySelector("#drop");

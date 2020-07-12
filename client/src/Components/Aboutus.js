@@ -52,16 +52,20 @@ export default function AboutUs() {
                       </Link>
                     </div>
                     <div className="px-1">
-                      <Link to="/">
+                      <a
+                        target="_blank"
+                        href="https://play.google.com/store/apps/details?id=com.hfad.stec"
+                      >
                         <button
                           class="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1"
                           type="button"
                           href
+
                           // style={{"transition: all .15s ease"}}
                         >
                           Get The App
                         </button>
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 </div>
